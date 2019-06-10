@@ -9,7 +9,7 @@ before_script:
   - rustup component add clippy
 
 script:
-  - cargo fetch --locked
+  - cargo fetch
   - cargo fmt --all -- --check
   - cargo clippy --all-targets --all-features -- -D warnings
   - cargo test --all-features
