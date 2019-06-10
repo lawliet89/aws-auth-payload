@@ -254,14 +254,14 @@ pub(crate) mod tests {
     #[test]
     fn presigned_url_has_expected_values() -> Result<(), crate::Error> {
         let region = Region::UsEast1;
-        let headers = [("X-K8S-AWS-ID", "example")]
-            .iter()
-            .cloned()
-            .collect();
+        let headers = [("X-K8S-AWS-ID", "example")].iter().cloned().collect();
         let url = get_presigned_url(Some(region.clone()), headers)?;
         let url = url::Url::parse(&url).unwrap();
 
-        assert_eq!(url.host().unwrap().to_string(), "sts.us-east-1.amazonaws.com");
+        assert_eq!(
+            url.host().unwrap().to_string(),
+            "sts.us-east-1.amazonaws.com"
+        );
 
         let params: HashMap<_, _> = url.query_pairs().collect();
 
@@ -279,10 +279,7 @@ pub(crate) mod tests {
 
     #[test]
     fn presigned_url_has_default_global_region() -> Result<(), crate::Error> {
-        let headers = [("X-K8S-AWS-ID", "example")]
-            .iter()
-            .cloned()
-            .collect();
+        let headers = [("X-K8S-AWS-ID", "example")].iter().cloned().collect();
         let url = get_presigned_url(None, headers)?;
         let url = url::Url::parse(&url).unwrap();
 
