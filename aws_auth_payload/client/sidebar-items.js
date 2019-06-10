@@ -1,0 +1,1 @@
+initSidebarItems({"fn":[["presigned_url","Generates a pre-signed URL using the provided AWS Credentials to AWS STS `GetCallerIdentity`"]],"struct":[["AwsAuthIamPayload","Payload for use to generate a payload for AWS IAM authentication"]]});

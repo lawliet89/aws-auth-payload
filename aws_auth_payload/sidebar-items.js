@@ -1,0 +1,1 @@
+initSidebarItems({"enum":[["Error","Error type for this library"]],"fn":[["get_aws_credentials","Use the priority documented here obtain AWS credentials"]],"mod":[["client",""]]});
