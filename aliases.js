@@ -83,7 +83,6 @@ ALIASES["regex"] = {};
 ALIASES["regex_syntax"] = {};
 ALIASES["rusoto_core"] = {};
 ALIASES["rusoto_credential"] = {};
-ALIASES["rusoto_sts"] = {};
 ALIASES["rustc_demangle"] = {};
 ALIASES["ryu"] = {};
 ALIASES["safemem"] = {};
