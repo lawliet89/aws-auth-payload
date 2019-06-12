@@ -50,14 +50,7 @@ impl AwsAuthIamPayload {
         let region = region
             .as_ref()
             .map(|r| Cow::Borrowed(r.borrow()))
-            .unwrap_or_else(|| {
-                debug!("No region provided: using \"global\" us-east-1 endpoint.");
-                Cow::Owned(Region::Custom {
-                    name: "us-east-1".to_string(),
-                    endpoint: "sts.amazonaws.com".to_string(),
-                })
-            });
-
+            .unwrap_or_default();
         // Code below is referenced from the code for
         // https://rusoto.github.io/rusoto/rusoto_sts/trait.Sts.html#tymethod.get_caller_identity
 
@@ -145,17 +138,11 @@ where
     let region = region
         .as_ref()
         .map(|r| Cow::Borrowed(r.borrow()))
-        .unwrap_or_else(|| {
-            debug!("No region provided: using \"global\" us-east-1 endpoint.");
-            Cow::Owned(Region::Custom {
-                name: "us-east-1".to_string(),
-                endpoint: "sts.amazonaws.com".to_string(),
-            })
-        });
+        .unwrap_or_default();
 
     let mut request = SignedRequest::new("GET", "sts", &region, "/");
-    let mut params = Params::new();
 
+    let mut params = Params::new();
     params.put("Action", "GetCallerIdentity");
     params.put("Version", "2011-06-15");
     request.set_params(params);
@@ -164,7 +151,7 @@ where
         request.add_header(header, value)
     }
 
-    request.generate_presigned_url(credentials, expires_in.unwrap_or(&DEFAULT_EXPIRES))
+    request.generate_presigned_url(credentials, expires_in.unwrap_or(&DEFAULT_EXPIRES), true)
 }
 
 #[cfg(test)]
@@ -225,33 +212,6 @@ pub(crate) mod tests {
     }
 
     #[test]
-    fn post_aws_iam_payload_has_default_global_region() -> Result<(), crate::Error> {
-        let headers = [("X-Vault-AWS-IAM-Server-ID", "vault.example.com")]
-            .iter()
-            .cloned()
-            .collect();
-        let payload = post_aws_iam_payload(None, headers)?;
-
-        assert_eq!(payload.iam_http_request_method, "POST");
-        assert_eq!(
-            payload.iam_request_url,
-            base64::encode("https://sts.amazonaws.com/")
-        );
-        assert_eq!(
-            payload.iam_request_body,
-            base64::encode("Action=GetCallerIdentity&Version=2011-06-15")
-        );
-        assert!(payload.iam_request_headers.contains_key("authorization"));
-        assert_eq!(
-            payload
-                .iam_request_headers
-                .get(&"X-Vault-AWS-IAM-Server-ID".to_lowercase()),
-            Some(&vec!["vault.example.com".to_string()])
-        );
-        Ok(())
-    }
-
-    #[test]
     fn presigned_url_has_expected_values() -> Result<(), crate::Error> {
         let region = Region::UsEast1;
         let headers = [("X-K8S-AWS-ID", "example")].iter().cloned().collect();
@@ -262,28 +222,6 @@ pub(crate) mod tests {
             url.host().unwrap().to_string(),
             "sts.us-east-1.amazonaws.com"
         );
-
-        let params: HashMap<_, _> = url.query_pairs().collect();
-
-        assert_eq!(params["Action"], "GetCallerIdentity");
-        assert_eq!(params["Version"], "2011-06-15");
-        assert_eq!(params["X-Amz-SignedHeaders"], "host;x-k8s-aws-id");
-        assert_eq!(params["X-Amz-Expires"], "60");
-        assert_eq!(params["X-Amz-Algorithm"], "AWS4-HMAC-SHA256");
-
-        assert!(params.contains_key("X-Amz-Signature"));
-        assert!(params.contains_key("X-Amz-Credential"));
-        assert!(params.contains_key("X-Amz-Date"));
-        Ok(())
-    }
-
-    #[test]
-    fn presigned_url_has_default_global_region() -> Result<(), crate::Error> {
-        let headers = [("X-K8S-AWS-ID", "example")].iter().cloned().collect();
-        let url = get_presigned_url(None, headers)?;
-        let url = url::Url::parse(&url).unwrap();
-
-        assert_eq!(url.host().unwrap().to_string(), "sts.amazonaws.com");
 
         let params: HashMap<_, _> = url.query_pairs().collect();
 

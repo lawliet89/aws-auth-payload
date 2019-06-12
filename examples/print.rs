@@ -4,13 +4,17 @@
 //! Vault AWS IAM authentication uses the Post method while Kubernetes uses the pre-signed URL
 
 use aws_auth_payload::client;
+use log::info;
+use rusoto_core::region::Region;
 
 fn main() -> Result<(), aws_auth_payload::Error> {
-    println!("Retrieving AWS Credentials from the environment");
+    env_logger::init();
+    info!("Retrieving AWS Credentials from the environment");
+
     let credentials = aws_auth_payload::get_aws_credentials()?;
     let payload = client::AwsAuthIamPayload::new::<rusoto_core::Region>(
         &credentials,
-        None,
+        Some(Region::default()),
         Default::default(),
     );
     println!(
@@ -19,9 +23,10 @@ fn main() -> Result<(), aws_auth_payload::Error> {
             .map_err(|e| aws_auth_payload::Error::GenericError(e.to_string()))?
     );
 
+    let header = [].iter().cloned().collect();
     println!(
         "Pre-signed URL: {}",
-        client::presigned_url::<rusoto_core::Region>(&credentials, None, Default::default(), None)
+        client::presigned_url::<rusoto_core::Region>(&credentials, None, header, None)
     );
     Ok(())
 }
