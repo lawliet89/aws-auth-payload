@@ -3,6 +3,9 @@ name = "aws-auth-payload"
 version = "0.1.0"
 authors = ["Yong Wen Chua <lawliet89@users.noreply.github.com>"]
 edition = "2018"
+license = "MIT"
+repository = "https://github.com/lawliet89/aws-auth-payload"
+description = "This library provides methods for you to use your AWS credentials to generate a pre-signed request to AWS API."
 
 [dependencies]
 base64 = "0.10.1"
