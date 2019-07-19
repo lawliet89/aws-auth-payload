@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source to the Rust file `/home/travis/.cargo/registry/src/github.com-1ecc6299db9ec823/signal-hook-0.1.9/src/iterator.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>iterator.rs.html -- source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css"><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script src="../../storage.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="shortcut icon" href="../../favicon.ico"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><a href='../../signal_hook/index.html'><img src='../../rust-logo.png' alt='logo' width='100'></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!"><img src="../../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices"></div></div><script src="../../theme.js"></script><nav class="sub"><form class="search-form js-only"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><a id="settings-menu" href="../../settings.html"><img src="../../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><pre class="line-numbers"><span id="1">  1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source to the Rust file `/home/travis/.cargo/registry/src/github.com-1ecc6299db9ec823/signal-hook-0.1.10/src/iterator.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>iterator.rs.html -- source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css"><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script src="../../storage.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="shortcut icon" href="../../favicon.ico"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><a href='../../signal_hook/index.html'><div class='logo-container'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!"><img src="../../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices"></div></div><script src="../../theme.js"></script><nav class="sub"><form class="search-form js-only"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><a id="settings-menu" href="../../settings.html"><img src="../../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
 <span id="4">  4</span>
@@ -619,7 +619,6 @@
 <span id="619">619</span>
 <span id="620">620</span>
 <span id="621">621</span>
-<span id="622">622</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="doccomment">//! An iterator over incoming signals.</span>
 <span class="doccomment">//!</span>
@@ -676,15 +675,12 @@
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">io</span>::<span class="ident">Error</span>;
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">iter</span>::<span class="ident">Enumerate</span>;
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">unix</span>::<span class="ident">io</span>::<span class="ident">AsRawFd</span>;
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;mio-support&quot;</span>))]</span>
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">unix</span>::<span class="ident">net</span>::<span class="ident">UnixStream</span>;
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">slice</span>::<span class="ident">Iter</span>;
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">sync</span>::<span class="ident">atomic</span>::{<span class="ident">AtomicBool</span>, <span class="ident">Ordering</span>};
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">sync</span>::{<span class="ident">Arc</span>, <span class="ident">Mutex</span>};
 
 <span class="kw">use</span> <span class="ident">libc</span>::{<span class="self">self</span>, <span class="ident">c_int</span>};
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;mio-support&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident">mio_uds</span>::<span class="ident">UnixStream</span>;
 
 <span class="kw">use</span> <span class="ident">pipe</span>;
 <span class="kw">use</span> <span class="ident">SigId</span>;
@@ -979,7 +975,7 @@
     <span class="doccomment">/// ```rust</span>
     <span class="doccomment">/// # use signal_hook::iterator::Signals;</span>
     <span class="doccomment">/// # use signal_hook::SIGUSR1;</span>
-    <span class="doccomment">/// # fn main() -&gt; Result&lt;(), Box&lt;std::error::Error&gt;&gt; {</span>
+    <span class="doccomment">/// # fn main() -&gt; Result&lt;(), std::io::Error&gt; {</span>
     <span class="doccomment">/// let signals = Signals::new(&amp;[SIGUSR1])?;</span>
     <span class="doccomment">/// let signals_bg = signals.clone();</span>
     <span class="doccomment">/// let thread = std::thread::spawn(move || {</span>
@@ -1060,8 +1056,10 @@
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;mio-support&quot;</span>)]</span>
 <span class="kw">mod</span> <span class="ident">mio_support</span> {
     <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">io</span>::<span class="ident">Error</span>;
+    <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">unix</span>::<span class="ident">io</span>::<span class="ident">AsRawFd</span>;
 
     <span class="kw">use</span> <span class="ident">mio</span>::<span class="ident">event</span>::<span class="ident">Evented</span>;
+    <span class="kw">use</span> <span class="ident">mio</span>::<span class="ident">unix</span>::<span class="ident">EventedFd</span>;
     <span class="kw">use</span> <span class="ident">mio</span>::{<span class="ident">Poll</span>, <span class="ident">PollOpt</span>, <span class="ident">Ready</span>, <span class="ident">Token</span>};
 
     <span class="kw">use</span> <span class="kw">super</span>::<span class="ident">Signals</span>;
@@ -1074,7 +1072,7 @@
             <span class="ident">interest</span>: <span class="ident">Ready</span>,
             <span class="ident">opts</span>: <span class="ident">PollOpt</span>,
         ) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
-            <span class="self">self</span>.<span class="ident">waker</span>.<span class="ident">read</span>.<span class="ident">register</span>(<span class="ident">poll</span>, <span class="ident">token</span>, <span class="ident">interest</span>, <span class="ident">opts</span>)
+            <span class="ident">EventedFd</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">waker</span>.<span class="ident">read</span>.<span class="ident">as_raw_fd</span>()).<span class="ident">register</span>(<span class="ident">poll</span>, <span class="ident">token</span>, <span class="ident">interest</span>, <span class="ident">opts</span>)
         }
 
         <span class="kw">fn</span> <span class="ident">reregister</span>(
@@ -1084,11 +1082,11 @@
             <span class="ident">interest</span>: <span class="ident">Ready</span>,
             <span class="ident">opts</span>: <span class="ident">PollOpt</span>,
         ) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
-            <span class="self">self</span>.<span class="ident">waker</span>.<span class="ident">read</span>.<span class="ident">reregister</span>(<span class="ident">poll</span>, <span class="ident">token</span>, <span class="ident">interest</span>, <span class="ident">opts</span>)
+            <span class="ident">EventedFd</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">waker</span>.<span class="ident">read</span>.<span class="ident">as_raw_fd</span>()).<span class="ident">reregister</span>(<span class="ident">poll</span>, <span class="ident">token</span>, <span class="ident">interest</span>, <span class="ident">opts</span>)
         }
 
         <span class="kw">fn</span> <span class="ident">deregister</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">poll</span>: <span class="kw-2">&amp;</span><span class="ident">Poll</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
-            <span class="self">self</span>.<span class="ident">waker</span>.<span class="ident">read</span>.<span class="ident">deregister</span>(<span class="ident">poll</span>)
+            <span class="ident">EventedFd</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">waker</span>.<span class="ident">read</span>.<span class="ident">as_raw_fd</span>()).<span class="ident">deregister</span>(<span class="ident">poll</span>)
         }
     }
 
