@@ -20,6 +20,6 @@ serde_urlencoded = "0.5.1"
 
 [dev-dependencies]
 env_logger = "0.6.1"
-rusoto_mock = "0.40.0"
+rusoto_mock = "0.41.0"
 serde_json = "1.0"
 url = "1.7.2"
