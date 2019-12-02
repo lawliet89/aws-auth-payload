@@ -201,17 +201,17 @@
 <span class="doccomment">/// An interface for waiting on a process to exit.</span>
 <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">trait</span> <span class="ident">Wait</span> {
     <span class="doccomment">/// Get the identifier for this process or diagnostics.</span>
-    <span class="kw">fn</span> <span class="ident">id</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">u32</span>;
+    <span class="kw">fn</span> <span class="ident">id</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u32</span>;
     <span class="doccomment">/// Try waiting for a process to exit in a non-blocking manner.</span>
-    <span class="kw">fn</span> <span class="ident">try_wait</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">io</span>::<span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">ExitStatus</span><span class="op">&gt;&gt;</span>;
+    <span class="kw">fn</span> <span class="ident">try_wait</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">io</span>::<span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">ExitStatus</span><span class="op">&gt;</span><span class="op">&gt;</span>;
 }
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">T</span>: <span class="lifetime">&#39;a</span> <span class="op">+</span> <span class="ident">Wait</span><span class="op">&gt;</span> <span class="ident">Wait</span> <span class="kw">for</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="kw-2">mut</span> <span class="ident">T</span> {
-    <span class="kw">fn</span> <span class="ident">id</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">u32</span> {
+    <span class="kw">fn</span> <span class="ident">id</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u32</span> {
         (<span class="kw-2">*</span><span class="kw-2">*</span><span class="self">self</span>).<span class="ident">id</span>()
     }
 
-    <span class="kw">fn</span> <span class="ident">try_wait</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">io</span>::<span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">ExitStatus</span><span class="op">&gt;&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">try_wait</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">io</span>::<span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">ExitStatus</span><span class="op">&gt;</span><span class="op">&gt;</span> {
         (<span class="kw-2">*</span><span class="kw-2">*</span><span class="self">self</span>).<span class="ident">try_wait</span>()
     }
 }
@@ -225,7 +225,7 @@
     <span class="kw">fn</span> <span class="ident">reap_orphans</span>(<span class="kw-2">&amp;</span><span class="self">self</span>);
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">T</span>, <span class="ident">O</span>: <span class="lifetime">&#39;a</span> <span class="op">+</span> <span class="ident">OrphanQueue</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;&gt;</span> <span class="ident">OrphanQueue</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">O</span> {
+<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">T</span>, <span class="ident">O</span>: <span class="lifetime">&#39;a</span> <span class="op">+</span> <span class="ident">OrphanQueue</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="ident">OrphanQueue</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">O</span> {
     <span class="kw">fn</span> <span class="ident">push_orphan</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">orphan</span>: <span class="ident">T</span>) {
         (<span class="kw-2">*</span><span class="kw-2">*</span><span class="self">self</span>).<span class="ident">push_orphan</span>(<span class="ident">orphan</span>);
     }
@@ -242,7 +242,7 @@
 }
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> <span class="ident">AtomicOrphanQueue</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">Self</span> {
             <span class="ident">queue</span>: <span class="ident">SegQueue</span>::<span class="ident">new</span>(),
         }
@@ -257,15 +257,15 @@
     <span class="kw">fn</span> <span class="ident">reap_orphans</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) {
         <span class="kw">let</span> <span class="ident">len</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">queue</span>.<span class="ident">len</span>();
 
-        <span class="kw">if</span> <span class="ident">len</span> <span class="op">==</span> <span class="number">0</span> {
+        <span class="kw">if</span> <span class="ident">len</span> <span class="op">=</span><span class="op">=</span> <span class="number">0</span> {
             <span class="kw">return</span>;
         }
 
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">orphans</span> <span class="op">=</span> <span class="ident">Vec</span>::<span class="ident">with_capacity</span>(<span class="ident">len</span>);
         <span class="kw">while</span> <span class="kw">let</span> <span class="prelude-val">Ok</span>(<span class="kw-2">mut</span> <span class="ident">orphan</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">queue</span>.<span class="ident">pop</span>() {
             <span class="kw">match</span> <span class="ident">orphan</span>.<span class="ident">try_wait</span>() {
-                <span class="prelude-val">Ok</span>(<span class="prelude-val">Some</span>(<span class="kw">_</span>)) <span class="op">=&gt;</span> {},
-                <span class="prelude-val">Err</span>(<span class="ident">e</span>) <span class="op">=&gt;</span> <span class="macro">error</span><span class="macro">!</span>(
+                <span class="prelude-val">Ok</span>(<span class="prelude-val">Some</span>(<span class="kw">_</span>)) <span class="op">=</span><span class="op">&gt;</span> {},
+                <span class="prelude-val">Err</span>(<span class="ident">e</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="macro">error</span><span class="macro">!</span>(
                     <span class="string">&quot;leaking orphaned process {} due to try_wait() error: {}&quot;</span>,
                     <span class="ident">orphan</span>.<span class="ident">id</span>(),
                     <span class="ident">e</span>,
@@ -274,7 +274,7 @@
                 <span class="comment">// Still not done yet, we need to put it back in the queue</span>
                 <span class="comment">// when were done draining it, so that we don&#39;t get stuck</span>
                 <span class="comment">// in an infinite loop here</span>
-                <span class="prelude-val">Ok</span>(<span class="prelude-val">None</span>) <span class="op">=&gt;</span> <span class="ident">orphans</span>.<span class="ident">push</span>(<span class="ident">orphan</span>),
+                <span class="prelude-val">Ok</span>(<span class="prelude-val">None</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">orphans</span>.<span class="ident">push</span>(<span class="ident">orphan</span>),
             }
         }
 
@@ -295,13 +295,13 @@
     <span class="kw">use</span> <span class="kw">super</span>::<span class="ident">Wait</span>;
 
     <span class="kw">struct</span> <span class="ident">MockWait</span> {
-        <span class="ident">total_waits</span>: <span class="ident">Rc</span><span class="op">&lt;</span><span class="ident">Cell</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;&gt;</span>,
+        <span class="ident">total_waits</span>: <span class="ident">Rc</span><span class="op">&lt;</span><span class="ident">Cell</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span><span class="op">&gt;</span>,
         <span class="ident">num_wait_until_status</span>: <span class="ident">usize</span>,
         <span class="ident">return_err</span>: <span class="ident">bool</span>,
     }
 
     <span class="kw">impl</span> <span class="ident">MockWait</span> {
-        <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">num_wait_until_status</span>: <span class="ident">usize</span>) <span class="op">-&gt;</span> <span class="self">Self</span> {
+        <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">num_wait_until_status</span>: <span class="ident">usize</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
             <span class="self">Self</span> {
                 <span class="ident">total_waits</span>: <span class="ident">Rc</span>::<span class="ident">new</span>(<span class="ident">Cell</span>::<span class="ident">new</span>(<span class="number">0</span>)),
                 <span class="ident">num_wait_until_status</span>,
@@ -309,7 +309,7 @@
             }
         }
 
-        <span class="kw">fn</span> <span class="ident">with_err</span>() <span class="op">-&gt;</span> <span class="self">Self</span> {
+        <span class="kw">fn</span> <span class="ident">with_err</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
             <span class="self">Self</span> {
                 <span class="ident">total_waits</span>: <span class="ident">Rc</span>::<span class="ident">new</span>(<span class="ident">Cell</span>::<span class="ident">new</span>(<span class="number">0</span>)),
                 <span class="ident">num_wait_until_status</span>: <span class="number">0</span>,
@@ -319,14 +319,14 @@
     }
 
     <span class="kw">impl</span> <span class="ident">Wait</span> <span class="kw">for</span> <span class="ident">MockWait</span> {
-        <span class="kw">fn</span> <span class="ident">id</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">u32</span> {
+        <span class="kw">fn</span> <span class="ident">id</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u32</span> {
             <span class="number">42</span>
         }
 
-        <span class="kw">fn</span> <span class="ident">try_wait</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">io</span>::<span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">ExitStatus</span><span class="op">&gt;&gt;</span> {
+        <span class="kw">fn</span> <span class="ident">try_wait</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">io</span>::<span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">ExitStatus</span><span class="op">&gt;</span><span class="op">&gt;</span> {
             <span class="kw">let</span> <span class="ident">waits</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">total_waits</span>.<span class="ident">get</span>();
 
-            <span class="kw">let</span> <span class="ident">ret</span> <span class="op">=</span> <span class="kw">if</span> <span class="self">self</span>.<span class="ident">num_wait_until_status</span> <span class="op">==</span> <span class="ident">waits</span> {
+            <span class="kw">let</span> <span class="ident">ret</span> <span class="op">=</span> <span class="kw">if</span> <span class="self">self</span>.<span class="ident">num_wait_until_status</span> <span class="op">=</span><span class="op">=</span> <span class="ident">waits</span> {
                 <span class="kw">if</span> <span class="self">self</span>.<span class="ident">return_err</span> {
                     <span class="prelude-val">Ok</span>(<span class="prelude-val">Some</span>(<span class="ident">ExitStatus</span>::<span class="ident">from_raw</span>(<span class="number">0</span>)))
                 } <span class="kw">else</span> {

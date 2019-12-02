@@ -13,5 +13,4 @@ implementors["tokio_uds"] = [{text:"impl <a class=\"trait\" href=\"https://doc.r
             } else {
                 window.pending_implementors = implementors;
             }
-        
-})()
+        })()

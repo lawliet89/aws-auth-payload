@@ -6,5 +6,4 @@ implementors["tokio_process"] = [];
             } else {
                 window.pending_implementors = implementors;
             }
-        
-})()
+        })()

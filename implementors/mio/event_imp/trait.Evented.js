@@ -6,5 +6,4 @@ implementors["mio_uds"] = [{text:"impl <a class=\"trait\" href=\"mio/event_imp/t
             } else {
                 window.pending_implementors = implementors;
             }
-        
-})()
+        })()

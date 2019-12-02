@@ -6,5 +6,4 @@ implementors["rusoto_core"] = [];
             } else {
                 window.pending_implementors = implementors;
             }
-        
-})()
+        })()

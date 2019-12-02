@@ -12,5 +12,4 @@ implementors["tokio_uds"] = [{text:"impl <a class=\"trait\" href=\"tokio_io/asyn
             } else {
                 window.pending_implementors = implementors;
             }
-        
-})()
+        })()

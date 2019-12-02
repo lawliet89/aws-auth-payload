@@ -62,7 +62,7 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// Assuming roles through profiles is not supported at the moment. See this</span>
 <span class="doccomment">/// [Github issue](https://github.com/rusoto/rusoto/issues/1120)</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_aws_credentials</span>() <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">AwsCredentials</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_aws_credentials</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">AwsCredentials</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
     <span class="kw">let</span> <span class="ident">provider</span> <span class="op">=</span> <span class="ident">DefaultCredentialsProvider</span>::<span class="ident">new</span>()<span class="question-mark">?</span>;
     <span class="prelude-val">Ok</span>(<span class="ident">provider</span>.<span class="ident">credentials</span>().<span class="ident">wait</span>()<span class="question-mark">?</span>)
 }
@@ -74,7 +74,7 @@
     <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">env</span>;
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">expected_aws_credentials</span>() <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="kw">crate</span>::<span class="ident">Error</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">expected_aws_credentials</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="kw">crate</span>::<span class="ident">Error</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">access_key</span> <span class="op">=</span> <span class="string">&quot;test_key&quot;</span>;
         <span class="kw">let</span> <span class="ident">secret_key</span> <span class="op">=</span> <span class="string">&quot;test_secret&quot;</span>;
 

@@ -74,7 +74,7 @@ for it using an event loop.</p>
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">process</span>::{<span class="ident">Command</span>, <span class="ident">Stdio</span>};
 <span class="kw">use</span> <span class="ident">tokio_process</span>::{<span class="ident">Child</span>, <span class="ident">ChildStdout</span>, <span class="ident">CommandExt</span>};
 
-<span class="kw">fn</span> <span class="ident">lines_stream</span>(<span class="ident">child</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">Child</span>) <span class="op">-&gt;</span> <span class="kw">impl</span> <span class="ident">Stream</span><span class="op">&lt;</span><span class="ident">Item</span> <span class="op">=</span> <span class="ident">String</span>, <span class="ident">Error</span> <span class="op">=</span> <span class="ident">Error</span><span class="op">&gt;</span> <span class="op">+</span> <span class="ident">Send</span> <span class="op">+</span> <span class="lifetime">&#39;static</span> {
+<span class="kw">fn</span> <span class="ident">lines_stream</span>(<span class="ident">child</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">Child</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw">impl</span> <span class="ident">Stream</span><span class="op">&lt;</span><span class="ident">Item</span> <span class="op">=</span> <span class="ident">String</span>, <span class="ident">Error</span> <span class="op">=</span> <span class="ident">Error</span><span class="op">&gt;</span> <span class="op">+</span> <span class="ident">Send</span> <span class="op">+</span> <span class="lifetime">&#39;static</span> {
     <span class="kw">let</span> <span class="ident">stdout</span> <span class="op">=</span> <span class="ident">child</span>.<span class="ident">stdout</span>().<span class="ident">take</span>()
         .<span class="ident">expect</span>(<span class="string">&quot;child did not have a handle to stdout&quot;</span>);
 
@@ -89,7 +89,7 @@ for it using an event loop.</p>
 
 <span class="kw">fn</span> <span class="ident">main</span>() {
     <span class="comment">// Lazily invoke any code so it can run directly within the tokio runtime</span>
-    <span class="ident">tokio</span>::<span class="ident">run</span>(<span class="ident">futures</span>::<span class="ident">lazy</span>(<span class="op">||</span> {
+    <span class="ident">tokio</span>::<span class="ident">run</span>(<span class="ident">futures</span>::<span class="ident">lazy</span>(<span class="op">|</span><span class="op">|</span> {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">cmd</span> <span class="op">=</span> <span class="ident">Command</span>::<span class="ident">new</span>(<span class="string">&quot;cat&quot;</span>);
 
         <span class="comment">// Specify that we want the command&#39;s standard output piped back to us.</span>

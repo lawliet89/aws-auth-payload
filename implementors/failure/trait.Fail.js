@@ -7,5 +7,4 @@ implementors["failure"] = [];
             } else {
                 window.pending_implementors = implementors;
             }
-        
-})()
+        })()

@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source to the Rust file `/home/travis/.cargo/registry/src/github.com-1ecc6299db9ec823/rusoto_credential-0.40.0/src/static_provider.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>static_provider.rs.html -- source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css"><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script src="../../storage.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="shortcut icon" href="../../favicon.ico"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><a href='../../rusoto_credential/index.html'><div class='logo-container'><img src='https://raw.githubusercontent.com/rusoto/rusoto/master/assets/logo-square.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!"><img src="../../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices"></div></div><script src="../../theme.js"></script><nav class="sub"><form class="search-form js-only"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><a id="settings-menu" href="../../settings.html"><img src="../../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><pre class="line-numbers"><span id="1">  1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source to the Rust file `/home/travis/.cargo/registry/src/github.com-1ecc6299db9ec823/rusoto_credential-0.42.0/src/static_provider.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>static_provider.rs.html -- source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css"><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script src="../../storage.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="shortcut icon" href="../../favicon.ico"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><a href='../../rusoto_credential/index.html'><div class='logo-container'><img src='https://raw.githubusercontent.com/rusoto/rusoto/master/assets/logo-square.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!"><img src="../../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices"></div></div><script src="../../theme.js"></script><nav class="sub"><form class="search-form js-only"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><a id="settings-menu" href="../../settings.html"><img src="../../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
 <span id="4">  4</span>
@@ -160,6 +160,19 @@
 <span id="160">160</span>
 <span id="161">161</span>
 <span id="162">162</span>
+<span id="163">163</span>
+<span id="164">164</span>
+<span id="165">165</span>
+<span id="166">166</span>
+<span id="167">167</span>
+<span id="168">168</span>
+<span id="169">169</span>
+<span id="170">170</span>
+<span id="171">171</span>
+<span id="172">172</span>
+<span id="173">173</span>
+<span id="174">174</span>
+<span id="175">175</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="doccomment">//! Provides a way to create static/programmatically generated AWS Credentials.</span>
 <span class="doccomment">//! For those who can&#39;t get them from an environment, or a file.</span>
@@ -189,7 +202,7 @@
         <span class="ident">secret_access_key</span>: <span class="ident">String</span>,
         <span class="ident">token</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>,
         <span class="ident">valid_for</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">i64</span><span class="op">&gt;</span>,
-    ) <span class="op">-&gt;</span> <span class="ident">StaticProvider</span> {
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">StaticProvider</span> {
         <span class="ident">StaticProvider</span> {
             <span class="ident">credentials</span>: <span class="ident">AwsCredentials</span>::<span class="ident">new</span>(<span class="ident">access_key</span>, <span class="ident">secret_access_key</span>, <span class="ident">token</span>, <span class="prelude-val">None</span>),
             <span class="ident">valid_for</span>,
@@ -197,7 +210,7 @@
     }
 
     <span class="doccomment">/// Creates a new minimal Static Provider. This will set the token as optional none.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new_minimal</span>(<span class="ident">access_key</span>: <span class="ident">String</span>, <span class="ident">secret_access_key</span>: <span class="ident">String</span>) <span class="op">-&gt;</span> <span class="ident">StaticProvider</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new_minimal</span>(<span class="ident">access_key</span>: <span class="ident">String</span>, <span class="ident">secret_access_key</span>: <span class="ident">String</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">StaticProvider</span> {
         <span class="ident">StaticProvider</span> {
             <span class="ident">credentials</span>: <span class="ident">AwsCredentials</span>::<span class="ident">new</span>(<span class="ident">access_key</span>, <span class="ident">secret_access_key</span>, <span class="prelude-val">None</span>, <span class="prelude-val">None</span>),
             <span class="ident">valid_for</span>: <span class="prelude-val">None</span>,
@@ -205,27 +218,27 @@
     }
 
     <span class="doccomment">/// Gets the AWS Access Key ID for this Static Provider.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_aws_access_key_id</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="ident">str</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_aws_access_key_id</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">str</span> {
         <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">credentials</span>.<span class="ident">key</span>
     }
 
     <span class="doccomment">/// Gets the AWS Secret Access Key for this Static Provider.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_aws_secret_access_key</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="ident">str</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_aws_secret_access_key</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">str</span> {
         <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">credentials</span>.<span class="ident">secret</span>
     }
 
     <span class="doccomment">/// Determines if this Static Provider was given a Token.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">has_token</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">has_token</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="self">self</span>.<span class="ident">credentials</span>.<span class="ident">token</span>.<span class="ident">is_some</span>()
     }
 
     <span class="doccomment">/// Gets The Token this Static Provider was given.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_token</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_token</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span> {
         <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">credentials</span>.<span class="ident">token</span>
     }
 
     <span class="doccomment">/// Returns the length in seconds this Static Provider will be valid for.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_valid_for</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">i64</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_valid_for</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">i64</span><span class="op">&gt;</span> {
         <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">valid_for</span>
     }
 }
@@ -233,10 +246,16 @@
 <span class="kw">impl</span> <span class="ident">ProvideAwsCredentials</span> <span class="kw">for</span> <span class="ident">StaticProvider</span> {
     <span class="kw">type</span> <span class="ident">Future</span> <span class="op">=</span> <span class="ident">FutureResult</span><span class="op">&lt;</span><span class="ident">AwsCredentials</span>, <span class="ident">CredentialsError</span><span class="op">&gt;</span>;
 
-    <span class="kw">fn</span> <span class="ident">credentials</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="self">Self</span>::<span class="ident">Future</span> {
+    <span class="kw">fn</span> <span class="ident">credentials</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span>::<span class="ident">Future</span> {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">creds</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">credentials</span>.<span class="ident">clone</span>();
         <span class="ident">creds</span>.<span class="ident">expires_at</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">valid_for</span>.<span class="ident">map</span>(<span class="op">|</span><span class="ident">v</span><span class="op">|</span> <span class="ident">Utc</span>::<span class="ident">now</span>() <span class="op">+</span> <span class="ident">Duration</span>::<span class="ident">seconds</span>(<span class="ident">v</span>));
         <span class="ident">ok</span>(<span class="ident">creds</span>)
+    }
+}
+
+<span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">AwsCredentials</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">StaticProvider</span> {
+    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">credentials</span>: <span class="ident">AwsCredentials</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+        <span class="ident">StaticProvider</span>{ <span class="ident">credentials</span>, <span class="ident">valid_for</span>: <span class="prelude-val">None</span> }
     }
 }
 
@@ -249,6 +268,13 @@
     <span class="kw">use</span> <span class="kw">super</span>::<span class="kw-2">*</span>;
     <span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">test_utils</span>::{<span class="ident">is_secret_hidden_behind_asterisks</span>, <span class="ident">SECRET</span>};
     <span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">ProvideAwsCredentials</span>;
+
+    <span class="attribute">#[<span class="ident">test</span>]</span>
+    <span class="kw">fn</span> <span class="ident">static_provider_impl_from_for_awscredentials</span>() {
+        <span class="kw">let</span> <span class="ident">provider</span> <span class="op">=</span> <span class="ident">StaticProvider</span>::<span class="ident">from</span>(<span class="ident">AwsCredentials</span>::<span class="ident">default</span>());
+        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">provider</span>.<span class="ident">get_aws_access_key_id</span>(), <span class="string">&quot;&quot;</span>);
+        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="kw-2">*</span><span class="ident">provider</span>.<span class="ident">is_valid_for</span>(), <span class="prelude-val">None</span>);
+    }
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">test_static_provider_creation</span>() {
@@ -312,7 +338,7 @@
             <span class="ident">access_key</span>: <span class="ident">String</span>,
             <span class="ident">token</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span>()<span class="op">&gt;</span>,
             <span class="ident">valid_for</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">i64</span><span class="op">&gt;</span>
-        ) <span class="op">-&gt;</span> <span class="ident">bool</span> {
+        ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
             <span class="kw">let</span> <span class="ident">provider</span> <span class="op">=</span> <span class="ident">StaticProvider</span>::<span class="ident">new</span>(
                 <span class="ident">access_key</span>,
                 <span class="ident">SECRET</span>.<span class="ident">to_owned</span>(),

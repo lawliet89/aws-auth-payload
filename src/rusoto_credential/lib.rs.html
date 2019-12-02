@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source to the Rust file `/home/travis/.cargo/registry/src/github.com-1ecc6299db9ec823/rusoto_credential-0.40.0/src/lib.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>lib.rs.html -- source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css"><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script src="../../storage.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="shortcut icon" href="../../favicon.ico"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><a href='../../rusoto_credential/index.html'><div class='logo-container'><img src='https://raw.githubusercontent.com/rusoto/rusoto/master/assets/logo-square.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!"><img src="../../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices"></div></div><script src="../../theme.js"></script><nav class="sub"><form class="search-form js-only"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><a id="settings-menu" href="../../settings.html"><img src="../../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><pre class="line-numbers"><span id="1">  1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source to the Rust file `/home/travis/.cargo/registry/src/github.com-1ecc6299db9ec823/rusoto_credential-0.42.0/src/lib.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>lib.rs.html -- source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css"><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script src="../../storage.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="shortcut icon" href="../../favicon.ico"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><a href='../../rusoto_credential/index.html'><div class='logo-container'><img src='https://raw.githubusercontent.com/rusoto/rusoto/master/assets/logo-square.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!"><img src="../../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices"></div></div><script src="../../theme.js"></script><nav class="sub"><form class="search-form js-only"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><a id="settings-menu" href="../../settings.html"><img src="../../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
 <span id="4">  4</span>
@@ -640,12 +640,55 @@
 <span id="640">640</span>
 <span id="641">641</span>
 <span id="642">642</span>
+<span id="643">643</span>
+<span id="644">644</span>
+<span id="645">645</span>
+<span id="646">646</span>
+<span id="647">647</span>
+<span id="648">648</span>
+<span id="649">649</span>
+<span id="650">650</span>
+<span id="651">651</span>
+<span id="652">652</span>
+<span id="653">653</span>
+<span id="654">654</span>
+<span id="655">655</span>
+<span id="656">656</span>
+<span id="657">657</span>
+<span id="658">658</span>
+<span id="659">659</span>
+<span id="660">660</span>
+<span id="661">661</span>
+<span id="662">662</span>
+<span id="663">663</span>
+<span id="664">664</span>
+<span id="665">665</span>
+<span id="666">666</span>
+<span id="667">667</span>
+<span id="668">668</span>
+<span id="669">669</span>
+<span id="670">670</span>
+<span id="671">671</span>
+<span id="672">672</span>
+<span id="673">673</span>
+<span id="674">674</span>
+<span id="675">675</span>
+<span id="676">676</span>
+<span id="677">677</span>
+<span id="678">678</span>
+<span id="679">679</span>
+<span id="680">680</span>
+<span id="681">681</span>
+<span id="682">682</span>
+<span id="683">683</span>
+<span id="684">684</span>
+<span id="685">685</span>
+<span id="686">686</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="attribute">#![<span class="ident">doc</span>(
     <span class="ident">html_logo_url</span> <span class="op">=</span> <span class="string">&quot;https://raw.githubusercontent.com/rusoto/rusoto/master/assets/logo-square.png&quot;</span>
 )]</span>
 <span class="attribute">#![<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;nightly-testing&quot;</span>, <span class="ident">feature</span>(<span class="ident">plugin</span>))]</span>
-<span class="attribute">#![<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;nightly-testing&quot;</span>, <span class="ident">plugin</span>(<span class="ident">clippy</span>))]</span>
 <span class="attribute">#![<span class="ident">cfg_attr</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;unstable&quot;</span>), <span class="ident">deny</span>(<span class="ident">warnings</span>))]</span>
 <span class="attribute">#![<span class="ident">deny</span>(<span class="ident">missing_docs</span>)]</span>
 
@@ -694,18 +737,52 @@
 <span class="kw">use</span> <span class="ident">futures</span>::{<span class="ident">Async</span>, <span class="ident">Future</span>, <span class="ident">Poll</span>};
 <span class="kw">use</span> <span class="ident">hyper</span>::<span class="ident">Error</span> <span class="kw">as</span> <span class="ident">HyperError</span>;
 
+<span class="doccomment">/// Representation of anonymity</span>
+<span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">Anonymous</span> {
+    <span class="doccomment">/// Return true if a type is anonymous, false otherwise</span>
+    <span class="kw">fn</span> <span class="ident">is_anonymous</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
+}
+
+<span class="kw">impl</span> <span class="ident">Anonymous</span> <span class="kw">for</span> <span class="ident">AwsCredentials</span> {
+    <span class="kw">fn</span> <span class="ident">is_anonymous</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+        <span class="self">self</span>.<span class="ident">aws_access_key_id</span>().<span class="ident">is_empty</span>() <span class="kw-2">&amp;</span><span class="op">&amp;</span> <span class="self">self</span>.<span class="ident">aws_secret_access_key</span>().<span class="ident">is_empty</span>()
+    }
+}
+
 <span class="doccomment">/// AWS API access credentials, including access key, secret key, token (for IAM profiles),</span>
 <span class="doccomment">/// expiration timestamp, and claims from federated login.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Deserialize</span>)]</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// # Anonymous example</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// Some AWS services, like [s3](https://docs.aws.amazon.com/AmazonS3/latest/API/Welcome.html)</span>
+<span class="doccomment">/// do not require authenticated credential identity. For these</span>
+<span class="doccomment">/// cases you can use a default set which are considered anonymous</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// ```rust,ignore</span>
+<span class="doccomment">/// use rusoto_core::request::HttpClient;</span>
+<span class="doccomment">/// use rusoto_s3::S3Client;</span>
+<span class="doccomment">/// use rusoto_credential::{StaticProvider, AwsCredentials};</span>
+<span class="doccomment">/// # use std::error::Error;</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// # fn main() -&gt; Result&lt;(), Box&lt;dyn Error&gt;&gt; {</span>
+<span class="doccomment">/// let s3 = S3Client::new_with(</span>
+<span class="doccomment">///     HttpClient::new()?,</span>
+<span class="doccomment">///     StaticProvider::from(AwsCredentials::default()),</span>
+<span class="doccomment">///     Default::default()</span>
+<span class="doccomment">/// );</span>
+<span class="doccomment">/// # Ok(())</span>
+<span class="doccomment">/// # }</span>
+<span class="doccomment">/// ```</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Deserialize</span>, <span class="ident">Default</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">AwsCredentials</span> {
     <span class="attribute">#[<span class="ident">serde</span>(<span class="ident">rename</span> <span class="op">=</span> <span class="string">&quot;AccessKeyId&quot;</span>)]</span>
     <span class="ident">key</span>: <span class="ident">String</span>,
     <span class="attribute">#[<span class="ident">serde</span>(<span class="ident">rename</span> <span class="op">=</span> <span class="string">&quot;SecretAccessKey&quot;</span>)]</span>
     <span class="ident">secret</span>: <span class="ident">String</span>,
-    <span class="attribute">#[<span class="ident">serde</span>(<span class="ident">rename</span> <span class="op">=</span> <span class="string">&quot;Token&quot;</span>)]</span>
+    <span class="attribute">#[<span class="ident">serde</span>(<span class="ident">rename</span> <span class="op">=</span> <span class="string">&quot;SessionToken&quot;</span>, <span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;Token&quot;</span>)]</span>
     <span class="ident">token</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>,
     <span class="attribute">#[<span class="ident">serde</span>(<span class="ident">rename</span> <span class="op">=</span> <span class="string">&quot;Expiration&quot;</span>)]</span>
-    <span class="ident">expires_at</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">DateTime</span><span class="op">&lt;</span><span class="ident">Utc</span><span class="op">&gt;&gt;</span>,
+    <span class="ident">expires_at</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">DateTime</span><span class="op">&lt;</span><span class="ident">Utc</span><span class="op">&gt;</span><span class="op">&gt;</span>,
     <span class="attribute">#[<span class="ident">serde</span>(<span class="ident">skip</span>)]</span>
     <span class="ident">claims</span>: <span class="ident">BTreeMap</span><span class="op">&lt;</span><span class="ident">String</span>, <span class="ident">String</span><span class="op">&gt;</span>,
 }
@@ -717,8 +794,8 @@
         <span class="ident">key</span>: <span class="ident">K</span>,
         <span class="ident">secret</span>: <span class="ident">S</span>,
         <span class="ident">token</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>,
-        <span class="ident">expires_at</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">DateTime</span><span class="op">&lt;</span><span class="ident">Utc</span><span class="op">&gt;&gt;</span>,
-    ) <span class="op">-&gt;</span> <span class="ident">AwsCredentials</span>
+        <span class="ident">expires_at</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">DateTime</span><span class="op">&lt;</span><span class="ident">Utc</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">AwsCredentials</span>
     <span class="kw">where</span>
         <span class="ident">K</span>: <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>,
         <span class="ident">S</span>: <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>,
@@ -733,51 +810,51 @@
     }
 
     <span class="doccomment">/// Get a reference to the access key ID.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">aws_access_key_id</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="ident">str</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">aws_access_key_id</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">str</span> {
         <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">key</span>
     }
 
     <span class="doccomment">/// Get a reference to the secret access key.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">aws_secret_access_key</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="ident">str</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">aws_secret_access_key</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">str</span> {
         <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">secret</span>
     }
 
     <span class="doccomment">/// Get a reference to the expiry time.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">expires_at</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">DateTime</span><span class="op">&lt;</span><span class="ident">Utc</span><span class="op">&gt;&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">expires_at</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">DateTime</span><span class="op">&lt;</span><span class="ident">Utc</span><span class="op">&gt;</span><span class="op">&gt;</span> {
         <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">expires_at</span>
     }
 
     <span class="doccomment">/// Get a reference to the access token.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">token</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">token</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span> {
         <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">token</span>
     }
 
     <span class="doccomment">/// Determine whether or not the credentials are expired.</span>
-    <span class="kw">fn</span> <span class="ident">credentials_are_expired</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">fn</span> <span class="ident">credentials_are_expired</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">match</span> <span class="self">self</span>.<span class="ident">expires_at</span> {
-            <span class="prelude-val">Some</span>(<span class="kw-2">ref</span> <span class="ident">e</span>) <span class="op">=&gt;</span>
+            <span class="prelude-val">Some</span>(<span class="kw-2">ref</span> <span class="ident">e</span>) <span class="op">=</span><span class="op">&gt;</span>
             <span class="comment">// This is a rough hack to hopefully avoid someone requesting creds then sitting on them</span>
             <span class="comment">// before issuing the request:</span>
             {
                 <span class="kw-2">*</span><span class="ident">e</span> <span class="op">&lt;</span> <span class="ident">Utc</span>::<span class="ident">now</span>() <span class="op">+</span> <span class="ident">ChronoDuration</span>::<span class="ident">seconds</span>(<span class="number">20</span>)
             }
-            <span class="prelude-val">None</span> <span class="op">=&gt;</span> <span class="bool-val">false</span>,
+            <span class="prelude-val">None</span> <span class="op">=</span><span class="op">&gt;</span> <span class="bool-val">false</span>,
         }
     }
 
     <span class="doccomment">/// Get the token claims</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">claims</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="ident">BTreeMap</span><span class="op">&lt;</span><span class="ident">String</span>, <span class="ident">String</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">claims</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">BTreeMap</span><span class="op">&lt;</span><span class="ident">String</span>, <span class="ident">String</span><span class="op">&gt;</span> {
         <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">claims</span>
     }
 
     <span class="doccomment">/// Get the mutable token claims</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">claims_mut</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">BTreeMap</span><span class="op">&lt;</span><span class="ident">String</span>, <span class="ident">String</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">claims_mut</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">BTreeMap</span><span class="op">&lt;</span><span class="ident">String</span>, <span class="ident">String</span><span class="op">&gt;</span> {
         <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>.<span class="ident">claims</span>
     }
 }
 
 <span class="kw">impl</span> <span class="ident">fmt</span>::<span class="ident">Debug</span> <span class="kw">for</span> <span class="ident">AwsCredentials</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt</span>::<span class="ident">Formatter</span>) <span class="op">-&gt;</span> <span class="ident">fmt</span>::<span class="prelude-ty">Result</span> {
+    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt</span>::<span class="ident">Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">fmt</span>::<span class="prelude-ty">Result</span> {
         <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="string">&quot;AwsCredentials&quot;</span>)
             .<span class="ident">field</span>(<span class="string">&quot;key&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">key</span>)
             .<span class="ident">field</span>(<span class="string">&quot;secret&quot;</span>, <span class="kw-2">&amp;</span><span class="string">&quot;**********&quot;</span>)
@@ -802,7 +879,7 @@
     <span class="doccomment">/// Creates a new Credentials Error.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// * `message` - The Error message for this CredentialsError.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span><span class="op">&lt;</span><span class="ident">S</span><span class="op">&gt;</span>(<span class="ident">message</span>: <span class="ident">S</span>) <span class="op">-&gt;</span> <span class="ident">CredentialsError</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span><span class="op">&lt;</span><span class="ident">S</span><span class="op">&gt;</span>(<span class="ident">message</span>: <span class="ident">S</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CredentialsError</span>
     <span class="kw">where</span>
         <span class="ident">S</span>: <span class="ident">ToString</span>,
     {
@@ -813,37 +890,37 @@
 }
 
 <span class="kw">impl</span> <span class="ident">fmt</span>::<span class="ident">Display</span> <span class="kw">for</span> <span class="ident">CredentialsError</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt</span>::<span class="ident">Formatter</span>) <span class="op">-&gt;</span> <span class="ident">fmt</span>::<span class="prelude-ty">Result</span> {
+    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt</span>::<span class="ident">Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">fmt</span>::<span class="prelude-ty">Result</span> {
         <span class="macro">write</span><span class="macro">!</span>(<span class="ident">f</span>, <span class="string">&quot;{}&quot;</span>, <span class="self">self</span>.<span class="ident">description</span>())
     }
 }
 
 <span class="kw">impl</span> <span class="ident">Error</span> <span class="kw">for</span> <span class="ident">CredentialsError</span> {
-    <span class="kw">fn</span> <span class="ident">description</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="ident">str</span> {
+    <span class="kw">fn</span> <span class="ident">description</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">str</span> {
         <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">message</span>
     }
 }
 
 <span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">ParseError</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">CredentialsError</span> {
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">err</span>: <span class="ident">ParseError</span>) <span class="op">-&gt;</span> <span class="ident">CredentialsError</span> {
+    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">err</span>: <span class="ident">ParseError</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CredentialsError</span> {
         <span class="ident">CredentialsError</span>::<span class="ident">new</span>(<span class="ident">err</span>.<span class="ident">description</span>())
     }
 }
 
 <span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">IoError</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">CredentialsError</span> {
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">err</span>: <span class="ident">IoError</span>) <span class="op">-&gt;</span> <span class="ident">CredentialsError</span> {
+    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">err</span>: <span class="ident">IoError</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CredentialsError</span> {
         <span class="ident">CredentialsError</span>::<span class="ident">new</span>(<span class="ident">err</span>.<span class="ident">description</span>())
     }
 }
 
 <span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">HyperError</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">CredentialsError</span> {
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">err</span>: <span class="ident">HyperError</span>) <span class="op">-&gt;</span> <span class="ident">CredentialsError</span> {
+    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">err</span>: <span class="ident">HyperError</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CredentialsError</span> {
         <span class="ident">CredentialsError</span>::<span class="ident">new</span>(<span class="macro">format</span><span class="macro">!</span>(<span class="string">&quot;Couldn&#39;t connect to credentials provider: {}&quot;</span>, <span class="ident">err</span>))
     }
 }
 
 <span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">serde_json</span>::<span class="ident">Error</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">CredentialsError</span> {
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">err</span>: <span class="ident">serde_json</span>::<span class="ident">Error</span>) <span class="op">-&gt;</span> <span class="ident">CredentialsError</span> {
+    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">err</span>: <span class="ident">serde_json</span>::<span class="ident">Error</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CredentialsError</span> {
         <span class="ident">CredentialsError</span>::<span class="ident">new</span>(<span class="ident">err</span>.<span class="ident">description</span>())
     }
 }
@@ -854,19 +931,19 @@
     <span class="kw">type</span> <span class="ident">Future</span>: <span class="ident">Future</span><span class="op">&lt;</span><span class="ident">Item</span> <span class="op">=</span> <span class="ident">AwsCredentials</span>, <span class="ident">Error</span> <span class="op">=</span> <span class="ident">CredentialsError</span><span class="op">&gt;</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>;
 
     <span class="doccomment">/// Produce a new `AwsCredentials` future.</span>
-    <span class="kw">fn</span> <span class="ident">credentials</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="self">Self</span>::<span class="ident">Future</span>;
+    <span class="kw">fn</span> <span class="ident">credentials</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span>::<span class="ident">Future</span>;
 }
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">ProvideAwsCredentials</span><span class="op">&gt;</span> <span class="ident">ProvideAwsCredentials</span> <span class="kw">for</span> <span class="ident">Rc</span><span class="op">&lt;</span><span class="ident">P</span><span class="op">&gt;</span> {
     <span class="kw">type</span> <span class="ident">Future</span> <span class="op">=</span> <span class="ident">P</span>::<span class="ident">Future</span>;
-    <span class="kw">fn</span> <span class="ident">credentials</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="self">Self</span>::<span class="ident">Future</span> {
+    <span class="kw">fn</span> <span class="ident">credentials</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span>::<span class="ident">Future</span> {
         <span class="ident">P</span>::<span class="ident">credentials</span>(<span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="self">self</span>)
     }
 }
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">ProvideAwsCredentials</span><span class="op">&gt;</span> <span class="ident">ProvideAwsCredentials</span> <span class="kw">for</span> <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">P</span><span class="op">&gt;</span> {
     <span class="kw">type</span> <span class="ident">Future</span> <span class="op">=</span> <span class="ident">P</span>::<span class="ident">Future</span>;
-    <span class="kw">fn</span> <span class="ident">credentials</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="self">Self</span>::<span class="ident">Future</span> {
+    <span class="kw">fn</span> <span class="ident">credentials</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span>::<span class="ident">Future</span> {
         <span class="ident">P</span>::<span class="ident">credentials</span>(<span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="self">self</span>)
     }
 }
@@ -880,12 +957,12 @@
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">AutoRefreshingProvider</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">ProvideAwsCredentials</span> <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span> {
     <span class="ident">credentials_provider</span>: <span class="ident">P</span>,
-    <span class="ident">shared_future</span>: <span class="ident">Mutex</span><span class="op">&lt;</span><span class="ident">Shared</span><span class="op">&lt;</span><span class="ident">P</span>::<span class="ident">Future</span><span class="op">&gt;&gt;</span>,
+    <span class="ident">shared_future</span>: <span class="ident">Mutex</span><span class="op">&lt;</span><span class="ident">Shared</span><span class="op">&lt;</span><span class="ident">P</span>::<span class="ident">Future</span><span class="op">&gt;</span><span class="op">&gt;</span>,
 }
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">ProvideAwsCredentials</span> <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span> <span class="ident">AutoRefreshingProvider</span><span class="op">&lt;</span><span class="ident">P</span><span class="op">&gt;</span> {
     <span class="doccomment">/// Create a new `AutoRefreshingProvider` around the provided base provider.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">provider</span>: <span class="ident">P</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">AutoRefreshingProvider</span><span class="op">&lt;</span><span class="ident">P</span><span class="op">&gt;</span>, <span class="ident">CredentialsError</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">provider</span>: <span class="ident">P</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">AutoRefreshingProvider</span><span class="op">&lt;</span><span class="ident">P</span><span class="op">&gt;</span>, <span class="ident">CredentialsError</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">future</span> <span class="op">=</span> <span class="ident">provider</span>.<span class="ident">credentials</span>();
         <span class="prelude-val">Ok</span>(<span class="ident">AutoRefreshingProvider</span> {
             <span class="ident">credentials_provider</span>: <span class="ident">provider</span>,
@@ -894,7 +971,7 @@
     }
 
     <span class="doccomment">/// Get a shared reference to the wrapped provider.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_ref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="ident">P</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_ref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">P</span> {
         <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">credentials_provider</span>
     }
 
@@ -902,7 +979,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This can be used to call `set_timeout` on the wrapped</span>
     <span class="doccomment">/// provider.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_mut</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">P</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_mut</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">P</span> {
         <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>.<span class="ident">credentials_provider</span>
     }
 }
@@ -913,15 +990,15 @@
 }
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">ProvideAwsCredentials</span> <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span> <span class="ident">AutoRefreshingFutureInner</span><span class="op">&lt;</span><span class="ident">P</span><span class="op">&gt;</span> {
-    <span class="kw">fn</span> <span class="ident">from_shared_future</span>(<span class="ident">future</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">Shared</span><span class="op">&lt;</span><span class="ident">P</span>::<span class="ident">Future</span><span class="op">&gt;</span>, <span class="ident">provider</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">-&gt;</span> <span class="self">Self</span> {
+    <span class="kw">fn</span> <span class="ident">from_shared_future</span>(<span class="ident">future</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">Shared</span><span class="op">&lt;</span><span class="ident">P</span>::<span class="ident">Future</span><span class="op">&gt;</span>, <span class="ident">provider</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="kw">match</span> <span class="ident">future</span>.<span class="ident">peek</span>() {
             <span class="comment">// no result from the future yet, let&#39;s keep using it</span>
-            <span class="prelude-val">None</span> <span class="op">=&gt;</span> <span class="ident">AutoRefreshingFutureInner</span>::<span class="ident">NotCached</span>(<span class="ident">future</span>.<span class="ident">clone</span>()),
+            <span class="prelude-val">None</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">AutoRefreshingFutureInner</span>::<span class="ident">NotCached</span>(<span class="ident">future</span>.<span class="ident">clone</span>()),
             <span class="comment">// successful result from the future, use it if not expired</span>
-            <span class="prelude-val">Some</span>(<span class="prelude-val">Ok</span>(<span class="kw-2">ref</span> <span class="ident">creds</span>)) <span class="kw">if</span> <span class="op">!</span><span class="ident">creds</span>.<span class="ident">credentials_are_expired</span>() <span class="op">=&gt;</span> {
+            <span class="prelude-val">Some</span>(<span class="prelude-val">Ok</span>(<span class="kw-2">ref</span> <span class="ident">creds</span>)) <span class="kw">if</span> <span class="op">!</span><span class="ident">creds</span>.<span class="ident">credentials_are_expired</span>() <span class="op">=</span><span class="op">&gt;</span> {
                 <span class="ident">AutoRefreshingFutureInner</span>::<span class="ident">Cached</span>(<span class="ident">creds</span>.<span class="ident">clone</span>())
             }
-            <span class="prelude-val">Some</span>(<span class="kw">_</span>) <span class="op">=&gt;</span> {
+            <span class="prelude-val">Some</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> {
                 <span class="comment">// else launch a new future</span>
                 <span class="kw-2">*</span><span class="ident">future</span> <span class="op">=</span> <span class="ident">provider</span>.<span class="ident">credentials</span>().<span class="ident">shared</span>();
                 <span class="ident">AutoRefreshingFutureInner</span>::<span class="ident">NotCached</span>(<span class="ident">future</span>.<span class="ident">clone</span>())
@@ -931,12 +1008,12 @@
 }
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">ProvideAwsCredentials</span> <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span> <span class="ident">Clone</span> <span class="kw">for</span> <span class="ident">AutoRefreshingFutureInner</span><span class="op">&lt;</span><span class="ident">P</span><span class="op">&gt;</span> {
-    <span class="kw">fn</span> <span class="ident">clone</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="self">Self</span> {
+    <span class="kw">fn</span> <span class="ident">clone</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="kw">match</span> <span class="kw-2">*</span><span class="self">self</span> {
-            <span class="ident">AutoRefreshingFutureInner</span>::<span class="ident">Cached</span>(<span class="kw-2">ref</span> <span class="ident">shared_item</span>) <span class="op">=&gt;</span> {
+            <span class="ident">AutoRefreshingFutureInner</span>::<span class="ident">Cached</span>(<span class="kw-2">ref</span> <span class="ident">shared_item</span>) <span class="op">=</span><span class="op">&gt;</span> {
                 <span class="ident">AutoRefreshingFutureInner</span>::<span class="ident">Cached</span>(<span class="ident">shared_item</span>.<span class="ident">clone</span>())
             }
-            <span class="ident">AutoRefreshingFutureInner</span>::<span class="ident">NotCached</span>(<span class="kw-2">ref</span> <span class="ident">shared_future</span>) <span class="op">=&gt;</span> {
+            <span class="ident">AutoRefreshingFutureInner</span>::<span class="ident">NotCached</span>(<span class="kw-2">ref</span> <span class="ident">shared_future</span>) <span class="op">=</span><span class="op">&gt;</span> {
                 <span class="ident">AutoRefreshingFutureInner</span>::<span class="ident">NotCached</span>(<span class="ident">shared_future</span>.<span class="ident">clone</span>())
             }
         }
@@ -952,15 +1029,15 @@
     <span class="kw">type</span> <span class="ident">Item</span> <span class="op">=</span> <span class="ident">AwsCredentials</span>;
     <span class="kw">type</span> <span class="ident">Error</span> <span class="op">=</span> <span class="ident">CredentialsError</span>;
 
-    <span class="kw">fn</span> <span class="ident">poll</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">Poll</span><span class="op">&lt;</span><span class="self">Self</span>::<span class="ident">Item</span>, <span class="self">Self</span>::<span class="ident">Error</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">poll</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Poll</span><span class="op">&lt;</span><span class="self">Self</span>::<span class="ident">Item</span>, <span class="self">Self</span>::<span class="ident">Error</span><span class="op">&gt;</span> {
         <span class="kw">match</span> <span class="self">self</span>.<span class="ident">inner</span> {
-            <span class="ident">AutoRefreshingFutureInner</span>::<span class="ident">Cached</span>(<span class="kw-2">ref</span> <span class="ident">creds</span>) <span class="op">=&gt;</span> <span class="prelude-val">Ok</span>(<span class="ident">Async</span>::<span class="ident">Ready</span>(<span class="ident">creds</span>.<span class="ident">deref</span>().<span class="ident">clone</span>())),
-            <span class="ident">AutoRefreshingFutureInner</span>::<span class="ident">NotCached</span>(<span class="kw-2">ref</span> <span class="kw-2">mut</span> <span class="ident">future</span>) <span class="op">=&gt;</span> <span class="kw">match</span> <span class="ident">future</span>.<span class="ident">poll</span>() {
-                <span class="prelude-val">Err</span>(<span class="ident">err</span>) <span class="op">=&gt;</span> <span class="prelude-val">Err</span>(<span class="ident">CredentialsError</span> {
+            <span class="ident">AutoRefreshingFutureInner</span>::<span class="ident">Cached</span>(<span class="kw-2">ref</span> <span class="ident">creds</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Ok</span>(<span class="ident">Async</span>::<span class="ident">Ready</span>(<span class="ident">creds</span>.<span class="ident">deref</span>().<span class="ident">clone</span>())),
+            <span class="ident">AutoRefreshingFutureInner</span>::<span class="ident">NotCached</span>(<span class="kw-2">ref</span> <span class="kw-2">mut</span> <span class="ident">future</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="kw">match</span> <span class="ident">future</span>.<span class="ident">poll</span>() {
+                <span class="prelude-val">Err</span>(<span class="ident">err</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Err</span>(<span class="ident">CredentialsError</span> {
                     <span class="ident">message</span>: <span class="ident">err</span>.<span class="ident">message</span>.<span class="ident">to_owned</span>(),
                 }),
-                <span class="prelude-val">Ok</span>(<span class="ident">Async</span>::<span class="ident">NotReady</span>) <span class="op">=&gt;</span> <span class="prelude-val">Ok</span>(<span class="ident">Async</span>::<span class="ident">NotReady</span>),
-                <span class="prelude-val">Ok</span>(<span class="ident">Async</span>::<span class="ident">Ready</span>(<span class="ident">item</span>)) <span class="op">=&gt;</span> <span class="prelude-val">Ok</span>(<span class="ident">Async</span>::<span class="ident">Ready</span>(<span class="ident">item</span>.<span class="ident">deref</span>().<span class="ident">clone</span>())),
+                <span class="prelude-val">Ok</span>(<span class="ident">Async</span>::<span class="ident">NotReady</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Ok</span>(<span class="ident">Async</span>::<span class="ident">NotReady</span>),
+                <span class="prelude-val">Ok</span>(<span class="ident">Async</span>::<span class="ident">Ready</span>(<span class="ident">item</span>)) <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Ok</span>(<span class="ident">Async</span>::<span class="ident">Ready</span>(<span class="ident">item</span>.<span class="ident">deref</span>().<span class="ident">clone</span>())),
             },
         }
     }
@@ -969,7 +1046,7 @@
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">ProvideAwsCredentials</span> <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span> <span class="ident">ProvideAwsCredentials</span> <span class="kw">for</span> <span class="ident">AutoRefreshingProvider</span><span class="op">&lt;</span><span class="ident">P</span><span class="op">&gt;</span> {
     <span class="kw">type</span> <span class="ident">Future</span> <span class="op">=</span> <span class="ident">AutoRefreshingProviderFuture</span><span class="op">&lt;</span><span class="ident">P</span><span class="op">&gt;</span>;
 
-    <span class="kw">fn</span> <span class="ident">credentials</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="self">Self</span>::<span class="ident">Future</span> {
+    <span class="kw">fn</span> <span class="ident">credentials</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span>::<span class="ident">Future</span> {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">shared_future</span> <span class="op">=</span> <span class="self">self</span>
             .<span class="ident">shared_future</span>
             .<span class="ident">lock</span>()
@@ -1001,7 +1078,7 @@
 
 <span class="kw">impl</span> <span class="ident">DefaultCredentialsProvider</span> {
     <span class="doccomment">/// Creates a new thread-safe `DefaultCredentialsProvider`.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">DefaultCredentialsProvider</span>, <span class="ident">CredentialsError</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">DefaultCredentialsProvider</span>, <span class="ident">CredentialsError</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">inner</span> <span class="op">=</span> <span class="ident">AutoRefreshingProvider</span>::<span class="ident">new</span>(<span class="ident">ChainProvider</span>::<span class="ident">new</span>())<span class="question-mark">?</span>;
         <span class="prelude-val">Ok</span>(<span class="ident">DefaultCredentialsProvider</span>(<span class="ident">inner</span>))
     }
@@ -1010,7 +1087,7 @@
 <span class="kw">impl</span> <span class="ident">ProvideAwsCredentials</span> <span class="kw">for</span> <span class="ident">DefaultCredentialsProvider</span> {
     <span class="kw">type</span> <span class="ident">Future</span> <span class="op">=</span> <span class="ident">DefaultCredentialsProviderFuture</span>;
 
-    <span class="kw">fn</span> <span class="ident">credentials</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="self">Self</span>::<span class="ident">Future</span> {
+    <span class="kw">fn</span> <span class="ident">credentials</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span>::<span class="ident">Future</span> {
         <span class="kw">let</span> <span class="ident">inner</span> <span class="op">=</span> <span class="self">self</span>.<span class="number">0</span>.<span class="ident">credentials</span>();
         <span class="ident">DefaultCredentialsProviderFuture</span>(<span class="ident">inner</span>)
     }
@@ -1023,7 +1100,7 @@
     <span class="kw">type</span> <span class="ident">Item</span> <span class="op">=</span> <span class="ident">AwsCredentials</span>;
     <span class="kw">type</span> <span class="ident">Error</span> <span class="op">=</span> <span class="ident">CredentialsError</span>;
 
-    <span class="kw">fn</span> <span class="ident">poll</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">Poll</span><span class="op">&lt;</span><span class="self">Self</span>::<span class="ident">Item</span>, <span class="self">Self</span>::<span class="ident">Error</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">poll</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Poll</span><span class="op">&lt;</span><span class="self">Self</span>::<span class="ident">Item</span>, <span class="self">Self</span>::<span class="ident">Error</span><span class="op">&gt;</span> {
         <span class="self">self</span>.<span class="number">0</span>.<span class="ident">poll</span>()
     }
 }
@@ -1094,7 +1171,7 @@
     <span class="kw">type</span> <span class="ident">Item</span> <span class="op">=</span> <span class="ident">AwsCredentials</span>;
     <span class="kw">type</span> <span class="ident">Error</span> <span class="op">=</span> <span class="ident">CredentialsError</span>;
 
-    <span class="kw">fn</span> <span class="ident">poll</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">Poll</span><span class="op">&lt;</span><span class="self">Self</span>::<span class="ident">Item</span>, <span class="self">Self</span>::<span class="ident">Error</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">poll</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Poll</span><span class="op">&lt;</span><span class="self">Self</span>::<span class="ident">Item</span>, <span class="self">Self</span>::<span class="ident">Error</span><span class="op">&gt;</span> {
         <span class="self">self</span>.<span class="ident">inner</span>.<span class="ident">poll</span>()
     }
 }
@@ -1102,7 +1179,7 @@
 <span class="kw">impl</span> <span class="ident">ProvideAwsCredentials</span> <span class="kw">for</span> <span class="ident">ChainProvider</span> {
     <span class="kw">type</span> <span class="ident">Future</span> <span class="op">=</span> <span class="ident">ChainProviderFuture</span>;
 
-    <span class="kw">fn</span> <span class="ident">credentials</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="self">Self</span>::<span class="ident">Future</span> {
+    <span class="kw">fn</span> <span class="ident">credentials</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span>::<span class="ident">Future</span> {
         <span class="kw">let</span> <span class="ident">profile_provider</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">profile_provider</span>.<span class="ident">clone</span>();
         <span class="kw">let</span> <span class="ident">instance_metadata_provider</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">instance_metadata_provider</span>.<span class="ident">clone</span>();
         <span class="kw">let</span> <span class="ident">container_provider</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">container_provider</span>.<span class="ident">clone</span>();
@@ -1110,8 +1187,8 @@
             .<span class="ident">environment_provider</span>
             .<span class="ident">credentials</span>()
             .<span class="ident">or_else</span>(<span class="kw">move</span> <span class="op">|</span><span class="kw">_</span><span class="op">|</span> <span class="kw">match</span> <span class="ident">profile_provider</span> {
-                <span class="prelude-val">Some</span>(<span class="kw-2">ref</span> <span class="ident">provider</span>) <span class="op">=&gt;</span> <span class="ident">Either</span>::<span class="ident">A</span>(<span class="ident">provider</span>.<span class="ident">credentials</span>()),
-                <span class="prelude-val">None</span> <span class="op">=&gt;</span> <span class="ident">Either</span>::<span class="ident">B</span>(<span class="ident">err</span>(<span class="ident">CredentialsError</span>::<span class="ident">new</span>(<span class="string">&quot;&quot;</span>))),
+                <span class="prelude-val">Some</span>(<span class="kw-2">ref</span> <span class="ident">provider</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">Either</span>::<span class="ident">A</span>(<span class="ident">provider</span>.<span class="ident">credentials</span>()),
+                <span class="prelude-val">None</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">Either</span>::<span class="ident">B</span>(<span class="ident">err</span>(<span class="ident">CredentialsError</span>::<span class="ident">new</span>(<span class="string">&quot;&quot;</span>))),
             })
             .<span class="ident">or_else</span>(<span class="kw">move</span> <span class="op">|</span><span class="kw">_</span><span class="op">|</span> <span class="ident">container_provider</span>.<span class="ident">credentials</span>())
             .<span class="ident">or_else</span>(<span class="kw">move</span> <span class="op">|</span><span class="kw">_</span><span class="op">|</span> <span class="ident">instance_metadata_provider</span>.<span class="ident">credentials</span>())
@@ -1128,7 +1205,7 @@
 
 <span class="kw">impl</span> <span class="ident">ChainProvider</span> {
     <span class="doccomment">/// Create a new `ChainProvider` using a `ProfileProvider` with the default settings.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-&gt;</span> <span class="ident">ChainProvider</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ChainProvider</span> {
         <span class="ident">ChainProvider</span> {
             <span class="ident">environment_provider</span>: <span class="ident">EnvironmentProvider</span>::<span class="ident">default</span>(),
             <span class="ident">profile_provider</span>: <span class="ident">ProfileProvider</span>::<span class="ident">new</span>().<span class="ident">ok</span>(),
@@ -1138,7 +1215,7 @@
     }
 
     <span class="doccomment">/// Create a new `ChainProvider` using the provided `ProfileProvider`.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">with_profile_provider</span>(<span class="ident">profile_provider</span>: <span class="ident">ProfileProvider</span>) <span class="op">-&gt;</span> <span class="ident">ChainProvider</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">with_profile_provider</span>(<span class="ident">profile_provider</span>: <span class="ident">ProfileProvider</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ChainProvider</span> {
         <span class="ident">ChainProvider</span> {
             <span class="ident">environment_provider</span>: <span class="ident">EnvironmentProvider</span>::<span class="ident">default</span>(),
             <span class="ident">profile_provider</span>: <span class="prelude-val">Some</span>(<span class="ident">profile_provider</span>),
@@ -1149,28 +1226,28 @@
 }
 
 <span class="kw">impl</span> <span class="ident">Default</span> <span class="kw">for</span> <span class="ident">ChainProvider</span> {
-    <span class="kw">fn</span> <span class="ident">default</span>() <span class="op">-&gt;</span> <span class="self">Self</span> {
+    <span class="kw">fn</span> <span class="ident">default</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">Self</span>::<span class="ident">new</span>()
     }
 }
 
 <span class="doccomment">/// This is a helper function as Option&lt;T&gt;::filter is not yet stable (see issue #45860).</span>
 <span class="doccomment">/// &lt;https://github.com/rust-lang/rfcs/issues/2036&gt; also affects the implementation of this.</span>
-<span class="kw">fn</span> <span class="ident">non_empty_env_var</span>(<span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span> {
+<span class="kw">fn</span> <span class="ident">non_empty_env_var</span>(<span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span> {
     <span class="kw">match</span> <span class="ident">env_var</span>(<span class="ident">name</span>) {
-        <span class="prelude-val">Ok</span>(<span class="ident">value</span>) <span class="op">=&gt;</span> {
+        <span class="prelude-val">Ok</span>(<span class="ident">value</span>) <span class="op">=</span><span class="op">&gt;</span> {
             <span class="kw">if</span> <span class="ident">value</span>.<span class="ident">is_empty</span>() {
                 <span class="prelude-val">None</span>
             } <span class="kw">else</span> {
                 <span class="prelude-val">Some</span>(<span class="ident">value</span>)
             }
         }
-        <span class="prelude-val">Err</span>(<span class="kw">_</span>) <span class="op">=&gt;</span> <span class="prelude-val">None</span>,
+        <span class="prelude-val">Err</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">None</span>,
     }
 }
 
 <span class="doccomment">/// Parses the response from an AWS Metadata Service, either from an IAM Role, or a Container.</span>
-<span class="kw">fn</span> <span class="ident">parse_credentials_from_aws_service</span>(<span class="ident">response</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">AwsCredentials</span>, <span class="ident">CredentialsError</span><span class="op">&gt;</span> {
+<span class="kw">fn</span> <span class="ident">parse_credentials_from_aws_service</span>(<span class="ident">response</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">AwsCredentials</span>, <span class="ident">CredentialsError</span><span class="op">&gt;</span> {
     <span class="prelude-val">Ok</span>(<span class="ident">serde_json</span>::<span class="ident">from_str</span>::<span class="op">&lt;</span><span class="ident">AwsCredentials</span><span class="op">&gt;</span>(<span class="ident">response</span>)<span class="question-mark">?</span>)
 }
 
@@ -1188,17 +1265,27 @@
     <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">io</span>::<span class="ident">Read</span>;
     <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">path</span>::<span class="ident">Path</span>;
 
-    <span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">test_utils</span>::{<span class="ident">is_secret_hidden_behind_asterisks</span>, <span class="ident">lock</span>, <span class="ident">ENV_MUTEX</span>, <span class="ident">SECRET</span>};
+    <span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">test_utils</span>::{<span class="ident">is_secret_hidden_behind_asterisks</span>, <span class="ident">lock_env</span>, <span class="ident">SECRET</span>};
     <span class="kw">use</span> <span class="ident">futures</span>::<span class="ident">Future</span>;
 
     <span class="kw">use</span> <span class="kw">super</span>::<span class="kw-2">*</span>;
+
+    <span class="attribute">#[<span class="ident">test</span>]</span>
+    <span class="kw">fn</span> <span class="ident">default_empty_credentials_are_considered_anonymous</span>() {
+        <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">AwsCredentials</span>::<span class="ident">default</span>().<span class="ident">is_anonymous</span>())
+    }
+
+    <span class="attribute">#[<span class="ident">test</span>]</span>
+    <span class="kw">fn</span> <span class="ident">credentials_with_values_are_not_considered_anonymous</span>() {
+        <span class="macro">assert</span><span class="macro">!</span>(<span class="op">!</span><span class="ident">AwsCredentials</span>::<span class="ident">new</span>(<span class="string">&quot;foo&quot;</span>, <span class="string">&quot;bar&quot;</span>, <span class="prelude-val">None</span>, <span class="prelude-val">None</span>).<span class="ident">is_anonymous</span>())
+    }
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">providers_are_send_and_sync</span>() {
         <span class="kw">fn</span> <span class="ident">is_send_and_sync</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Send</span> <span class="op">+</span> <span class="ident">Sync</span><span class="op">&gt;</span>() {}
 
         <span class="ident">is_send_and_sync</span>::<span class="op">&lt;</span><span class="ident">ChainProvider</span><span class="op">&gt;</span>();
-        <span class="ident">is_send_and_sync</span>::<span class="op">&lt;</span><span class="ident">AutoRefreshingProvider</span><span class="op">&lt;</span><span class="ident">ChainProvider</span><span class="op">&gt;&gt;</span>();
+        <span class="ident">is_send_and_sync</span>::<span class="op">&lt;</span><span class="ident">AutoRefreshingProvider</span><span class="op">&lt;</span><span class="ident">ChainProvider</span><span class="op">&gt;</span><span class="op">&gt;</span>();
         <span class="ident">is_send_and_sync</span>::<span class="op">&lt;</span><span class="ident">DefaultCredentialsProvider</span><span class="op">&gt;</span>();
     }
 
@@ -1207,12 +1294,12 @@
         <span class="kw">fn</span> <span class="ident">is_send</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Send</span><span class="op">&gt;</span>() {}
 
         <span class="ident">is_send</span>::<span class="op">&lt;</span><span class="ident">ChainProviderFuture</span><span class="op">&gt;</span>();
-        <span class="ident">is_send</span>::<span class="op">&lt;</span><span class="ident">AutoRefreshingProviderFuture</span><span class="op">&lt;</span><span class="ident">ChainProvider</span><span class="op">&gt;&gt;</span>();
+        <span class="ident">is_send</span>::<span class="op">&lt;</span><span class="ident">AutoRefreshingProviderFuture</span><span class="op">&lt;</span><span class="ident">ChainProvider</span><span class="op">&gt;</span><span class="op">&gt;</span>();
     }
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">profile_provider_finds_right_credentials_in_file</span>() {
-        <span class="kw">let</span> <span class="ident">_guard</span> <span class="op">=</span> <span class="ident">lock</span>(<span class="kw-2">&amp;</span><span class="ident">ENV_MUTEX</span>);
+        <span class="kw">let</span> <span class="ident">_guard</span> <span class="op">=</span> <span class="ident">lock_env</span>();
         <span class="kw">let</span> <span class="ident">profile_provider</span> <span class="op">=</span> <span class="ident">ProfileProvider</span>::<span class="ident">with_configuration</span>(
             <span class="string">&quot;tests/sample-data/multiple_profile_credentials&quot;</span>,
             <span class="string">&quot;foo&quot;</span>,
@@ -1228,14 +1315,14 @@
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">parse_iam_task_credentials_sample_response</span>() {
-        <span class="kw">fn</span> <span class="ident">read_file_to_string</span>(<span class="ident">file_path</span>: <span class="kw-2">&amp;</span><span class="ident">Path</span>) <span class="op">-&gt;</span> <span class="ident">String</span> {
+        <span class="kw">fn</span> <span class="ident">read_file_to_string</span>(<span class="ident">file_path</span>: <span class="kw-2">&amp;</span><span class="ident">Path</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">String</span> {
             <span class="kw">match</span> <span class="ident">fs</span>::<span class="ident">metadata</span>(<span class="ident">file_path</span>) {
-                <span class="prelude-val">Ok</span>(<span class="ident">metadata</span>) <span class="op">=&gt;</span> {
+                <span class="prelude-val">Ok</span>(<span class="ident">metadata</span>) <span class="op">=</span><span class="op">&gt;</span> {
                     <span class="kw">if</span> <span class="op">!</span><span class="ident">metadata</span>.<span class="ident">is_file</span>() {
                         <span class="macro">panic</span><span class="macro">!</span>(<span class="string">&quot;Couldn&#39;t open file&quot;</span>);
                     }
                 }
-                <span class="prelude-val">Err</span>(<span class="kw">_</span>) <span class="op">=&gt;</span> <span class="macro">panic</span><span class="macro">!</span>(<span class="string">&quot;Couldn&#39;t stat file&quot;</span>),
+                <span class="prelude-val">Err</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="macro">panic</span><span class="macro">!</span>(<span class="string">&quot;Couldn&#39;t stat file&quot;</span>),
             };
 
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">file</span> <span class="op">=</span> <span class="ident">File</span>::<span class="ident">open</span>(<span class="ident">file_path</span>).<span class="ident">unwrap</span>();
@@ -1259,6 +1346,7 @@
             <span class="ident">credentials</span>.<span class="ident">aws_secret_access_key</span>(),
             <span class="string">&quot;wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY&quot;</span>
         );
+        <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">credentials</span>.<span class="ident">token</span>().<span class="ident">is_some</span>());
 
         <span class="macro">assert_eq</span><span class="macro">!</span>(
             <span class="ident">credentials</span>.<span class="ident">expires_at</span>().<span class="ident">expect</span>(<span class="string">&quot;&quot;</span>),
@@ -1272,7 +1360,7 @@
             <span class="ident">key</span>: <span class="ident">String</span>,
             <span class="ident">valid_for</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">i64</span><span class="op">&gt;</span>,
             <span class="ident">token</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span>()<span class="op">&gt;</span>
-        ) <span class="op">-&gt;</span> <span class="ident">bool</span> {
+        ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
             <span class="kw">let</span> <span class="ident">creds</span> <span class="op">=</span> <span class="ident">AwsCredentials</span>::<span class="ident">new</span>(
                 <span class="ident">key</span>,
                 <span class="ident">SECRET</span>.<span class="ident">to_owned</span>(),

@@ -12,7 +12,7 @@ available, making it possible to integrate with the tokio runtime.</p>
 
 <span class="kw">use</span> <span class="ident">signal_hook</span>::<span class="ident">iterator</span>::<span class="ident">Signals</span>;
 
-<span class="kw">fn</span> <span class="ident">main</span>() <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
+<span class="kw">fn</span> <span class="ident">main</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
     <span class="kw">let</span> <span class="ident">signals</span> <span class="op">=</span> <span class="ident">Signals</span>::<span class="ident">new</span>(<span class="kw-2">&amp;</span>[
         <span class="ident">signal_hook</span>::<span class="ident">SIGHUP</span>,
         <span class="ident">signal_hook</span>::<span class="ident">SIGTERM</span>,
@@ -23,14 +23,14 @@ available, making it possible to integrate with the tokio runtime.</p>
         <span class="comment">// Pick up signals that arrived since last time</span>
         <span class="kw">for</span> <span class="ident">signal</span> <span class="kw">in</span> <span class="ident">signals</span>.<span class="ident">pending</span>() {
             <span class="kw">match</span> <span class="ident">signal</span> <span class="kw">as</span> <span class="ident">libc</span>::<span class="ident">c_int</span> {
-                <span class="ident">signal_hook</span>::<span class="ident">SIGHUP</span> <span class="op">=&gt;</span> {
+                <span class="ident">signal_hook</span>::<span class="ident">SIGHUP</span> <span class="op">=</span><span class="op">&gt;</span> {
                     <span class="comment">// Reload configuration</span>
                     <span class="comment">// Reopen the log file</span>
                 }
-                <span class="ident">signal_hook</span>::<span class="ident">SIGTERM</span> <span class="op">|</span> <span class="ident">signal_hook</span>::<span class="ident">SIGINT</span> <span class="op">|</span> <span class="ident">signal_hook</span>::<span class="ident">SIGQUIT</span> <span class="op">=&gt;</span> {
+                <span class="ident">signal_hook</span>::<span class="ident">SIGTERM</span> <span class="op">|</span> <span class="ident">signal_hook</span>::<span class="ident">SIGINT</span> <span class="op">|</span> <span class="ident">signal_hook</span>::<span class="ident">SIGQUIT</span> <span class="op">=</span><span class="op">&gt;</span> {
                     <span class="kw">break</span> <span class="lifetime">&#39;outer</span>;
                 },
-                <span class="kw">_</span> <span class="op">=&gt;</span> <span class="macro">unreachable</span><span class="macro">!</span>(),
+                <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="macro">unreachable</span><span class="macro">!</span>(),
             }
         }
         <span class="comment">// Do some bit of work ‒ something with upper limit on waiting, so we don&#39;t block</span>

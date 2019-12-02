@@ -7,5 +7,4 @@ implementors["either"] = [{text:"impl&lt;L, R&gt; <a class=\"trait\" href=\"http
             } else {
                 window.pending_implementors = implementors;
             }
-        
-})()
+        })()

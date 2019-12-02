@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source to the Rust file `/home/travis/.cargo/registry/src/github.com-1ecc6299db9ec823/signal-hook-0.1.10/src/flag.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>flag.rs.html -- source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css"><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script src="../../storage.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="shortcut icon" href="../../favicon.ico"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><a href='../../signal_hook/index.html'><div class='logo-container'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!"><img src="../../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices"></div></div><script src="../../theme.js"></script><nav class="sub"><form class="search-form js-only"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><a id="settings-menu" href="../../settings.html"><img src="../../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><pre class="line-numbers"><span id="1">  1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source to the Rust file `/home/travis/.cargo/registry/src/github.com-1ecc6299db9ec823/signal-hook-0.1.12/src/flag.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>flag.rs.html -- source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css"><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script src="../../storage.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="shortcut icon" href="../../favicon.ico"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><a href='../../signal_hook/index.html'><div class='logo-container'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!"><img src="../../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices"></div></div><script src="../../theme.js"></script><nav class="sub"><form class="search-form js-only"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><a id="settings-menu" href="../../settings.html"><img src="../../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
 <span id="4">  4</span>
@@ -199,6 +199,21 @@
 <span id="199">199</span>
 <span id="200">200</span>
 <span id="201">201</span>
+<span id="202">202</span>
+<span id="203">203</span>
+<span id="204">204</span>
+<span id="205">205</span>
+<span id="206">206</span>
+<span id="207">207</span>
+<span id="208">208</span>
+<span id="209">209</span>
+<span id="210">210</span>
+<span id="211">211</span>
+<span id="212">212</span>
+<span id="213">213</span>
+<span id="214">214</span>
+<span id="215">215</span>
+<span id="216">216</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="doccomment">//! Module for actions setting flags.</span>
 <span class="doccomment">//!</span>
@@ -238,9 +253,11 @@
 <span class="doccomment">//!     let term = Arc::new(AtomicUsize::new(0));</span>
 <span class="doccomment">//!     const SIGTERM: usize = signal_hook::SIGTERM as usize;</span>
 <span class="doccomment">//!     const SIGINT: usize = signal_hook::SIGINT as usize;</span>
+<span class="doccomment">//! #   #[cfg(not(windows))]</span>
 <span class="doccomment">//!     const SIGQUIT: usize = signal_hook::SIGQUIT as usize;</span>
 <span class="doccomment">//!     signal_flag::register_usize(signal_hook::SIGTERM, Arc::clone(&amp;term), SIGTERM)?;</span>
 <span class="doccomment">//!     signal_flag::register_usize(signal_hook::SIGINT, Arc::clone(&amp;term), SIGINT)?;</span>
+<span class="doccomment">//! #   #[cfg(not(windows))]</span>
 <span class="doccomment">//!     signal_flag::register_usize(signal_hook::SIGQUIT, Arc::clone(&amp;term), SIGQUIT)?;</span>
 <span class="doccomment">//!</span>
 <span class="doccomment">//! #   // Hack to terminate the example when run as a doc-test.</span>
@@ -258,6 +275,7 @@
 <span class="doccomment">//!                 eprintln!(&quot;Terminating on the INT signal&quot;);</span>
 <span class="doccomment">//!                 break;</span>
 <span class="doccomment">//!             }</span>
+<span class="doccomment">//! #           #[cfg(not(windows))]</span>
 <span class="doccomment">//!             SIGQUIT =&gt; {</span>
 <span class="doccomment">//!                 eprintln!(&quot;Terminating on the QUIT signal&quot;);</span>
 <span class="doccomment">//!                 break;</span>
@@ -284,10 +302,15 @@
 <span class="doccomment">//!</span>
 <span class="doccomment">//! fn main() -&gt; Result&lt;(), Error&gt; {</span>
 <span class="doccomment">//!     let got = Arc::new(AtomicBool::new(false));</span>
+<span class="doccomment">//! #   #[cfg(not(windows))]</span>
 <span class="doccomment">//!     signal_hook::flag::register(signal_hook::SIGUSR1, Arc::clone(&amp;got))?;</span>
+<span class="doccomment">//! #   #[cfg(windows)]</span>
+<span class="doccomment">//! #   signal_hook::flag::register(signal_hook::SIGTERM, Arc::clone(&amp;got))?;</span>
 <span class="doccomment">//!     unsafe {</span>
-<span class="doccomment">//!         let pid = libc::getpid();</span>
-<span class="doccomment">//!         libc::kill(pid, signal_hook::SIGUSR1);</span>
+<span class="doccomment">//! #       #[cfg(not(windows))]</span>
+<span class="doccomment">//!         libc::raise(signal_hook::SIGUSR1);</span>
+<span class="doccomment">//! #       #[cfg(windows)]</span>
+<span class="doccomment">//! #       libc::raise(signal_hook::SIGTERM);</span>
 <span class="doccomment">//!     }</span>
 <span class="doccomment">//!     // A sleep here, because it could run the signal handler in another thread and we may not</span>
 <span class="doccomment">//!     // see the flag right away. This is still a hack and not guaranteed to work, it is just an</span>
@@ -314,9 +337,11 @@
 <span class="doccomment">//!     // We start with true, to load the configuration in the very first iteration too.</span>
 <span class="doccomment">//!     let reload = Arc::new(AtomicBool::new(true));</span>
 <span class="doccomment">//!     let term = Arc::new(AtomicBool::new(false));</span>
+<span class="doccomment">//! #   #[cfg(not(windows))]</span>
 <span class="doccomment">//!     signal_flag::register(signal_hook::SIGHUP, Arc::clone(&amp;reload))?;</span>
 <span class="doccomment">//!     signal_flag::register(signal_hook::SIGINT, Arc::clone(&amp;term))?;</span>
 <span class="doccomment">//!     signal_flag::register(signal_hook::SIGTERM, Arc::clone(&amp;term))?;</span>
+<span class="doccomment">//! #   #[cfg(not(windows))]</span>
 <span class="doccomment">//!     signal_flag::register(signal_hook::SIGQUIT, Arc::clone(&amp;term))?;</span>
 <span class="doccomment">//!     while !term.load(Ordering::Relaxed) {</span>
 <span class="doccomment">//!         // Using swap here, not load, to reset it back to false once it is reloaded.</span>
@@ -342,17 +367,17 @@
 <span class="kw">use</span> <span class="ident">SigId</span>;
 
 <span class="doccomment">/// Registers an action to set the flag to `true` whenever the given signal arrives.</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">register</span>(<span class="ident">signal</span>: <span class="ident">c_int</span>, <span class="ident">flag</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">AtomicBool</span><span class="op">&gt;</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">SigId</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">register</span>(<span class="ident">signal</span>: <span class="ident">c_int</span>, <span class="ident">flag</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">AtomicBool</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">SigId</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
     <span class="comment">// We use SeqCst for two reasons:</span>
     <span class="comment">// * Signals should not come very often, so the performance does not really matter.</span>
     <span class="comment">// * We promise the order of actions, but setting different atomics with Relaxed or similar</span>
     <span class="comment">//   would not guarantee the effective order.</span>
-    <span class="kw">unsafe</span> { ::<span class="ident">register</span>(<span class="ident">signal</span>, <span class="kw">move</span> <span class="op">||</span> <span class="ident">flag</span>.<span class="ident">store</span>(<span class="bool-val">true</span>, <span class="ident">Ordering</span>::<span class="ident">SeqCst</span>)) }
+    <span class="kw">unsafe</span> { ::<span class="ident">register</span>(<span class="ident">signal</span>, <span class="kw">move</span> <span class="op">|</span><span class="op">|</span> <span class="ident">flag</span>.<span class="ident">store</span>(<span class="bool-val">true</span>, <span class="ident">Ordering</span>::<span class="ident">SeqCst</span>)) }
 }
 
 <span class="doccomment">/// Registers an action to set the flag to the given value whenever the signal arrives.</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">register_usize</span>(<span class="ident">signal</span>: <span class="ident">c_int</span>, <span class="ident">flag</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">AtomicUsize</span><span class="op">&gt;</span>, <span class="ident">value</span>: <span class="ident">usize</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">SigId</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
-    <span class="kw">unsafe</span> { ::<span class="ident">register</span>(<span class="ident">signal</span>, <span class="kw">move</span> <span class="op">||</span> <span class="ident">flag</span>.<span class="ident">store</span>(<span class="ident">value</span>, <span class="ident">Ordering</span>::<span class="ident">SeqCst</span>)) }
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">register_usize</span>(<span class="ident">signal</span>: <span class="ident">c_int</span>, <span class="ident">flag</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">AtomicUsize</span><span class="op">&gt;</span>, <span class="ident">value</span>: <span class="ident">usize</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">SigId</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
+    <span class="kw">unsafe</span> { ::<span class="ident">register</span>(<span class="ident">signal</span>, <span class="kw">move</span> <span class="op">|</span><span class="op">|</span> <span class="ident">flag</span>.<span class="ident">store</span>(<span class="ident">value</span>, <span class="ident">Ordering</span>::<span class="ident">SeqCst</span>)) }
 }
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
@@ -366,12 +391,14 @@
 
     <span class="kw">fn</span> <span class="ident">self_signal</span>() {
         <span class="kw">unsafe</span> {
-            <span class="kw">let</span> <span class="ident">pid</span> <span class="op">=</span> <span class="ident">libc</span>::<span class="ident">getpid</span>();
-            <span class="ident">libc</span>::<span class="ident">kill</span>(<span class="ident">pid</span>, ::<span class="ident">SIGUSR1</span>);
+            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">windows</span>))]</span>
+            <span class="ident">libc</span>::<span class="ident">raise</span>(::<span class="ident">SIGUSR1</span>);
+            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">windows</span>)]</span>
+            <span class="ident">libc</span>::<span class="ident">raise</span>(::<span class="ident">SIGTERM</span>);
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">wait_flag</span>(<span class="ident">flag</span>: <span class="kw-2">&amp;</span><span class="ident">AtomicBool</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">fn</span> <span class="ident">wait_flag</span>(<span class="ident">flag</span>: <span class="kw-2">&amp;</span><span class="ident">AtomicBool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">let</span> <span class="ident">start</span> <span class="op">=</span> <span class="ident">Instant</span>::<span class="ident">now</span>();
         <span class="kw">while</span> <span class="op">!</span><span class="ident">flag</span>.<span class="ident">load</span>(<span class="ident">Ordering</span>::<span class="ident">Relaxed</span>) {
             <span class="ident">atomic</span>::<span class="ident">spin_loop_hint</span>();
@@ -389,7 +416,10 @@
     <span class="kw">fn</span> <span class="ident">register_unregister</span>() {
         <span class="comment">// When we register the action, it is active.</span>
         <span class="kw">let</span> <span class="ident">flag</span> <span class="op">=</span> <span class="ident">Arc</span>::<span class="ident">new</span>(<span class="ident">AtomicBool</span>::<span class="ident">new</span>(<span class="bool-val">false</span>));
+        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">windows</span>))]</span>
         <span class="kw">let</span> <span class="ident">signal</span> <span class="op">=</span> <span class="ident">register</span>(::<span class="ident">SIGUSR1</span>, <span class="ident">Arc</span>::<span class="ident">clone</span>(<span class="kw-2">&amp;</span><span class="ident">flag</span>)).<span class="ident">unwrap</span>();
+        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">windows</span>)]</span>
+        <span class="kw">let</span> <span class="ident">signal</span> <span class="op">=</span> <span class="ident">register</span>(::<span class="ident">SIGTERM</span>, <span class="ident">Arc</span>::<span class="ident">clone</span>(<span class="kw-2">&amp;</span><span class="ident">flag</span>)).<span class="ident">unwrap</span>();
         <span class="ident">self_signal</span>();
         <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">wait_flag</span>(<span class="kw-2">&amp;</span><span class="ident">flag</span>));
         <span class="comment">// But stops working after it is unregistered.</span>
