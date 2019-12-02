@@ -158,7 +158,6 @@ where
 pub(crate) mod tests {
     use super::*;
 
-    use futures::future::Future;
     use rusoto_core::credential::ProvideAwsCredentials;
 
     // mock_key, mock_secret
@@ -215,7 +214,7 @@ pub(crate) mod tests {
     fn presigned_url_has_expected_values() -> Result<(), crate::Error> {
         let region = Region::UsEast1;
         let headers = [("X-K8S-AWS-ID", "example")].iter().cloned().collect();
-        let url = get_presigned_url(Some(region.clone()), headers)?;
+        let url = get_presigned_url(Some(region), headers)?;
         let url = url::Url::parse(&url).unwrap();
 
         assert_eq!(
