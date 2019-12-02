@@ -158,6 +158,7 @@ where
 pub(crate) mod tests {
     use super::*;
 
+    use futures::future::Future;
     use rusoto_core::credential::ProvideAwsCredentials;
 
     // mock_key, mock_secret
