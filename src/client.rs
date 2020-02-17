@@ -158,39 +158,38 @@ where
 pub(crate) mod tests {
     use super::*;
 
-    use futures::future::Future;
     use rusoto_core::credential::ProvideAwsCredentials;
 
     // mock_key, mock_secret
-    pub(crate) fn credentials() -> Result<AwsCredentials, crate::Error> {
+    pub(crate) async fn credentials() -> Result<AwsCredentials, crate::Error> {
         let provider = rusoto_mock::MockCredentialsProvider;
-        Ok(provider.credentials().wait()?)
+        Ok(provider.credentials().await?)
     }
 
-    pub(crate) fn post_aws_iam_payload(
+    pub(crate) async fn post_aws_iam_payload(
         region: Option<Region>,
         header: HashMap<&str, &str>,
     ) -> Result<AwsAuthIamPayload, crate::Error> {
-        let cred = credentials()?;
+        let cred = credentials().await?;
         Ok(AwsAuthIamPayload::new(&cred, region, header))
     }
 
-    pub(crate) fn get_presigned_url(
+    pub(crate) async fn get_presigned_url(
         region: Option<Region>,
         header: HashMap<&str, &str>,
     ) -> Result<String, crate::Error> {
-        let cred = credentials()?;
+        let cred = credentials().await?;
         Ok(presigned_url(&cred, region, header, None))
     }
 
-    #[test]
-    fn post_aws_iam_payload_has_expected_values() -> Result<(), crate::Error> {
+    #[tokio::test(threaded_scheduler)]
+    async fn post_aws_iam_payload_has_expected_values() -> Result<(), crate::Error> {
         let region = Region::UsEast1;
         let headers = [("X-Vault-AWS-IAM-Server-ID", "vault.example.com")]
             .iter()
             .cloned()
             .collect();
-        let payload = post_aws_iam_payload(Some(region.clone()), headers)?;
+        let payload = post_aws_iam_payload(Some(region.clone()), headers).await?;
 
         assert_eq!(payload.iam_http_request_method, "POST");
         assert_eq!(
@@ -211,11 +210,11 @@ pub(crate) mod tests {
         Ok(())
     }
 
-    #[test]
-    fn presigned_url_has_expected_values() -> Result<(), crate::Error> {
+    #[tokio::test(threaded_scheduler)]
+    async fn presigned_url_has_expected_values() -> Result<(), crate::Error> {
         let region = Region::UsEast1;
         let headers = [("X-K8S-AWS-ID", "example")].iter().cloned().collect();
-        let url = get_presigned_url(Some(region), headers)?;
+        let url = get_presigned_url(Some(region), headers).await?;
         let url = url::Url::parse(&url).unwrap();
 
         assert_eq!(

@@ -7,11 +7,12 @@ use aws_auth_payload::client;
 use log::info;
 use rusoto_core::region::Region;
 
-fn main() -> Result<(), aws_auth_payload::Error> {
+#[tokio::main]
+async fn main() -> Result<(), aws_auth_payload::Error> {
     env_logger::init();
     info!("Retrieving AWS Credentials from the environment");
 
-    let credentials = aws_auth_payload::get_aws_credentials()?;
+    let credentials = aws_auth_payload::get_aws_credentials().await?;
     let payload = client::AwsAuthIamPayload::new::<rusoto_core::Region>(
         &credentials,
         Some(Region::default()),
