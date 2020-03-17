@@ -1,0 +1,1 @@
+initSidebarItems({"fn":[["from_fn","Creates a new iterator where each iteration calls the provided closure `F: FnMut() -> Option<T>`."],["successors","Creates a new iterator where each successive item is computed based on the preceding one."]],"struct":[["Copied","An iterator that copies the elements of an underlying iterator."]]});

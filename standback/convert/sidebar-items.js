@@ -1,0 +1,1 @@
+initSidebarItems({"enum":[["Infallible","The error type for errors that can never happen."]],"fn":[["identity","The identity function."]]});
