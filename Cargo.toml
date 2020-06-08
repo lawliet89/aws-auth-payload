@@ -19,7 +19,7 @@ serde_urlencoded = "0.6.1"
 
 [dev-dependencies]
 env_logger = "0.7.1"
-rusoto_mock = "0.43"
+rusoto_mock = "0.44"
 serde_json = "1.0"
 tokio = { version = "0.2", features=["macros", "rt-threaded"] }
 url = "2.1.0"
