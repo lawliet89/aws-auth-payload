@@ -71,7 +71,7 @@ impl AwsAuthIamPayload {
             request.add_header(header, value)
         }
 
-        request.sign_with_plus(credentials, true);
+        request.sign(credentials);
 
         let uri = format!(
             "{}://{}{}",
