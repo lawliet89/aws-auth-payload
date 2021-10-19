@@ -182,7 +182,7 @@ pub(crate) mod tests {
         Ok(presigned_url(&cred, region, header, None))
     }
 
-    #[tokio::test(threaded_scheduler)]
+    #[tokio::test(flavor = "multi_thread", worker_threads = 1)]
     async fn post_aws_iam_payload_has_expected_values() -> Result<(), crate::Error> {
         let region = Region::UsEast1;
         let headers = [("X-Vault-AWS-IAM-Server-ID", "vault.example.com")]
@@ -210,7 +210,7 @@ pub(crate) mod tests {
         Ok(())
     }
 
-    #[tokio::test(threaded_scheduler)]
+    #[tokio::test(flavor = "multi_thread", worker_threads = 1)]
     async fn presigned_url_has_expected_values() -> Result<(), crate::Error> {
         let region = Region::UsEast1;
         let headers = [("X-K8S-AWS-ID", "example")].iter().cloned().collect();

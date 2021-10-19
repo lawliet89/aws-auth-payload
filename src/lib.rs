@@ -25,7 +25,7 @@ mod tests {
 
     use std::env;
 
-    #[tokio::test(threaded_scheduler)]
+    #[tokio::test(flavor = "multi_thread", worker_threads = 1)]
     async fn expected_aws_credentials() -> Result<(), crate::Error> {
         let access_key = "test_key";
         let secret_key = "test_secret";
